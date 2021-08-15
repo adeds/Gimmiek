@@ -17,6 +17,5 @@ struct GameItemView: View {
             Text("\(game.released)")
                 .font(.subheadline)
         }
-        .padding()
     }
 }

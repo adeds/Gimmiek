@@ -12,12 +12,14 @@ class GameUseCase: ObservableObject, RandomAccessCollection {
     
     var startIndex: Int { games.startIndex }
     var endIndex: Int { games.endIndex }
-    var isLoading = false
+    
     subscript(position: Int) -> GameUiModel {
         return games[position]
     }
     
     @Published var games = [GameUiModel]()
+    
+    @Published var isLoading = false
     
     var page = 1
     

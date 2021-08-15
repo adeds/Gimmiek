@@ -8,7 +8,15 @@
 import SwiftUI
 
 struct GameDetailView: View {
+    var game : GameUiModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView{
+            VStack{
+                Image("game_bg1")
+                    .resizable()
+                    .aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                Text(game.released)
+            }
+        }
     }
 }

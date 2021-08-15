@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D085BC1926C8CE4B00380C64 /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */; };
 		D0BDA26F26C80E92005E0382 /* GimmiekApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */; };
 		D0BDA27126C80E92005E0382 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA27026C80E92005E0382 /* ContentView.swift */; };
 		D0BDA27326C80E94005E0382 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0BDA27226C80E94005E0382 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		D0BDA26B26C80E92005E0382 /* Gimmiek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gimmiek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GimmiekApp.swift; sourceTree = "<group>"; };
 		D0BDA27026C80E92005E0382 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				D0BDA29F26C83B72005E0382 /* GameDetailView.swift */,
+				D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				D0BDA28226C80F52005E0382 /* Game.swift in Sources */,
 				D0BDA26F26C80E92005E0382 /* GimmiekApp.swift in Sources */,
 				D0BDA2A026C83B72005E0382 /* GameDetailView.swift in Sources */,
+				D085BC1926C8CE4B00380C64 /* AccountDetailView.swift in Sources */,
 				D0BDA28826C82660005E0382 /* GameUseCase.swift in Sources */,
 				D0BDA2AA26C84161005E0382 /* EmptyStateView.swift in Sources */,
 			);
