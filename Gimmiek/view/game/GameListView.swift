@@ -27,7 +27,6 @@ struct GameListView: View {
                                 EmptyView()
                             }
                         }.aspectRatio(contentMode: .fit)
-                        //                        TextField("Search", text: $searchText)
                         TextField("Search", text: $input, onEditingChanged: {_ in
                             
                         }, onCommit: {
@@ -43,9 +42,6 @@ struct GameListView: View {
                     ForEach(games.games, id: \.uuid) { (game: GameUiModel) in
                         NavigationLink(destination: GameDetailView(game: game).navigationBarTitle(game.name)) {
                             GameItemView(game: game)
-                                .onAppear {
-//                                    print(game.name)
-                                }
                         }
                         .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
                         .background(Blur(style: .systemUltraThinMaterial))

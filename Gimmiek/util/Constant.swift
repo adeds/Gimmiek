@@ -17,5 +17,6 @@ struct Constant{
     struct QueryName {
         static let key = "&key="
         static let page = "&page="
+        static let search = "&search="
     }
 }
