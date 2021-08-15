@@ -7,19 +7,13 @@
 
 import Foundation
 
-class GameUseCase: ObservableObject, RandomAccessCollection {
-    typealias Element = GameUiModel
-    
-    var startIndex: Int { games.startIndex }
-    var endIndex: Int { games.endIndex }
-    
-    subscript(position: Int) -> GameUiModel {
-        return games[position]
-    }
+class GameUseCase : ObservableObject {
     
     @Published var games = [GameUiModel]()
     
     @Published var isLoading = false
+    var startIndex: Int { games.startIndex }
+    var endIndex: Int { games.endIndex }
     
     var page = 1
     
@@ -28,37 +22,60 @@ class GameUseCase: ObservableObject, RandomAccessCollection {
         + Constant.QueryName.key + Constant.rawrgApiKey
     
     init() {
-        fetchGameList()
+        let url = gameListUrl + Constant.QueryName.page + String(page)
+        fetchGameList(url: url)
     }
     
-    func fetchGameList() {
-        let url = gameListUrl + Constant.QueryName.page + String(page)
-        if let url = URL(string: url) {
+    func searchGame(keyword : String){
+        let url = gameListUrl + Constant.QueryName.search + keyword
+        print(url)
+        fetchGameList(url: url, isAppend: false)
+    }
+    
+    func fetchGameList(url : String, isAppend : Bool = true) {
+        guard let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return
+        }
+        if let url = URL(string: encodedUrl) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
                     print(error ?? "error fetch data game")
-                    self.isLoading = false
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                    }
                     return
                 }
                 
                 guard let safeData = data else {
-                    self.isLoading = false
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                    }
                     return
                 }
                 
                 guard let newGames = self.parseJSON(safeData) else {
-                    self.isLoading = false
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                    }
                     return
                 }
                 
                 DispatchQueue.main.async {
-                    self.games.append(contentsOf: newGames)
+                    if (!isAppend){
+                        self.games.removeAll()
+                    }
+                    if !newGames.isEmpty{
+                        self.games.append(contentsOf: newGames)
+                    }
+                    
                     self.isLoading = false
                 }
             }
-        
-            isLoading = true
+            
+            DispatchQueue.main.async {
+                self.isLoading = true
+            }
             task.resume()
         }else{
             print("url null")
@@ -71,8 +88,8 @@ class GameUseCase: ObservableObject, RandomAccessCollection {
         do {
             let gameList = try decoder.decode(Game.self, from: data).results
             return gameList.map({ (game) -> GameUiModel in
-                let name = game.name
-                let released = game.released
+                let name = game.name ?? "not found"
+                let released = game.released ?? "not found"
                 return GameUiModel(name: name, released: released)
             })
             

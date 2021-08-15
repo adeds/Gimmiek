@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct GameListView: View {
-    @ObservedObject var games = GameUseCase()
-    @State var searchText: String = ""
+    @ObservedObject var games: GameUseCase
+
+    @State var input: String = ""
     
     var body: some View {
         NavigationView {
@@ -26,19 +27,24 @@ struct GameListView: View {
                                 EmptyView()
                             }
                         }.aspectRatio(contentMode: .fit)
-                        
-                        TextField("Search", text: $searchText)
-                            .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5))
-                            .background(Blur(style: .systemUltraThinMaterial))
-                            .cornerRadius(10)
-                            .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                        //                        TextField("Search", text: $searchText)
+                        TextField("Search", text: $input, onEditingChanged: {_ in
+                            
+                        }, onCommit: {
+                            self.games.searchGame(keyword: input)
+                        })
+                        .keyboardType(.webSearch)
+                        .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5))
+                        .background(Blur(style: .systemUltraThinMaterial))
+                        .cornerRadius(10)
+                        .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                     }.listRowBackground(SwiftUI.Color.clear)
-                
-                    ForEach(games, id: \.uuid) { (game: GameUiModel) in
+                    
+                    ForEach(games.games, id: \.uuid) { (game: GameUiModel) in
                         NavigationLink(destination: GameDetailView(game: game).navigationBarTitle(game.name)) {
                             GameItemView(game: game)
                                 .onAppear {
-                                    print(game.name)
+//                                    print(game.name)
                                 }
                         }
                         .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
@@ -56,7 +62,7 @@ struct GameListView: View {
                 .background(Image("game_bg1"))
                 .navigationBarTitle("Gimmiek")
                 VStack {
-                    EmptyStateView(isLoading: games.isLoading, showEmptyState: games.isEmpty)
+                    EmptyStateView(isLoading: games.isLoading, showEmptyState: games.games.isEmpty)
                         .frame(minWidth: 100, idealWidth: 300, maxWidth: 400, minHeight: 100, idealHeight: 300, maxHeight: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
             }
