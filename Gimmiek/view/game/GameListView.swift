@@ -43,8 +43,10 @@ struct GameListView: View {
                         NavigationLink(destination: GameDetailView(game: game).navigationBarTitle(game.name)) {
                             GameItemView(game: game)
                         }
-                        .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
-                        .background(Blur(style: .systemUltraThinMaterial))
+                        .padding(EdgeInsets(top: 150, leading: 0, bottom: 0, trailing: 0))
+                        .background(
+                            UrlImage(urlString: game.backgroundImage)
+                        )
                         .cornerRadius(10)
                     }
                     .listRowBackground(SwiftUI.Color.clear)

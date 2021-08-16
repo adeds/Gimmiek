@@ -36,6 +36,7 @@ class GameUseCase : ObservableObject {
         guard let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             return
         }
+        print(url)
         if let url = URL(string: encodedUrl) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -91,7 +92,8 @@ class GameUseCase : ObservableObject {
                 let name = game.name ?? "not found"
                 let released = game.released ?? "not found"
                 let backgroundImage = game.backgroundImage
-                return GameUiModel(name: name, released: released, backgroundImage: backgroundImage)
+                let rating = game.rating ?? 0.0
+                return GameUiModel(name: name, released: released, backgroundImage: backgroundImage, rating: rating)
             })
             
         } catch {

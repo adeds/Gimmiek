@@ -18,16 +18,10 @@ struct UrlImage: View {
     
     var body: some View {
         if let image = imageLoader.image  {
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100, height: 100)
+            Image(uiImage: image).resizable()
         } else {
             if emptyUrl {
-                Image("image_not_found")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
+                Image("image_not_found").resizable()
             }else{
                 EmptyStateView(isLoading: true, showEmptyState: false)
             }
