@@ -90,7 +90,8 @@ class GameUseCase : ObservableObject {
             return gameList.map({ (game) -> GameUiModel in
                 let name = game.name ?? "not found"
                 let released = game.released ?? "not found"
-                return GameUiModel(name: name, released: released)
+                let backgroundImage = game.backgroundImage
+                return GameUiModel(name: name, released: released, backgroundImage: backgroundImage)
             })
             
         } catch {

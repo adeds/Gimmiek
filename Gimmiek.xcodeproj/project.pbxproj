@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D053C89A26CA9F6B00A20CCC /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053C89926CA9F6B00A20CCC /* ImageLoader.swift */; };
+		D053C89D26CAA14500A20CCC /* UrlImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053C89C26CAA14500A20CCC /* UrlImage.swift */; };
 		D085BC1926C8CE4B00380C64 /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */; };
 		D0BDA26F26C80E92005E0382 /* GimmiekApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */; };
 		D0BDA27126C80E92005E0382 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA27026C80E92005E0382 /* ContentView.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D053C89926CA9F6B00A20CCC /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		D053C89C26CAA14500A20CCC /* UrlImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlImage.swift; sourceTree = "<group>"; };
 		D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		D0BDA26B26C80E92005E0382 /* Gimmiek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gimmiek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GimmiekApp.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				D0BDA29726C82DBA005E0382 /* Constant.swift */,
+				D053C89926CA9F6B00A20CCC /* ImageLoader.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			children = (
 				D0BDA2A526C83BD0005E0382 /* Blur.swift */,
 				D0BDA2A926C84161005E0382 /* EmptyStateView.swift */,
+				D053C89C26CAA14500A20CCC /* UrlImage.swift */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -236,6 +242,8 @@
 				D085BC1926C8CE4B00380C64 /* AccountDetailView.swift in Sources */,
 				D0BDA28826C82660005E0382 /* GameUseCase.swift in Sources */,
 				D0BDA2AA26C84161005E0382 /* EmptyStateView.swift in Sources */,
+				D053C89A26CA9F6B00A20CCC /* ImageLoader.swift in Sources */,
+				D053C89D26CAA14500A20CCC /* UrlImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

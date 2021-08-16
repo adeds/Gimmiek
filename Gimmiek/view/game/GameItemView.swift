@@ -12,6 +12,7 @@ struct GameItemView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            UrlImage(urlString: game.backgroundImage)
             Text("\(game.name)")
                 .font(.headline)
             Text("\(game.released)")
