@@ -89,16 +89,46 @@ class GameUseCase : ObservableObject {
         do {
             let gameList = try decoder.decode(Game.self, from: data).results
             return gameList.map({ (game) -> GameUiModel in
-                let name = game.name ?? "not found"
-                let released = game.released ?? "not found"
+                let name = game.name ?? " - "
+                let released = game.released ?? " - "
+                let updated = game.released ?? " - "
                 let backgroundImage = game.backgroundImage
                 let rating = game.rating ?? 0.0
-                return GameUiModel(name: name, released: released, backgroundImage: backgroundImage, rating: rating)
+                let ratingTop = game.ratingTop ?? 0
+                let platforms = getPlatform(game.platforms)
+                let genres = getGenresAndTags(game.genres)
+                let screenshots = getScreenshots(game.shortScreenshots)
+                let tags = getGenresAndTags(game.tags)
+                return GameUiModel(name: name, released: released, updated: updated,
+                                   backgroundImage: backgroundImage,
+                                   rating: rating, ratingTop: ratingTop,
+                                   platforms: platforms , genres: genres, screenshots: screenshots, tags: tags)
             })
             
         } catch {
             print(error)
             return nil
         }
+    }
+    
+    func getPlatform(_ platforms : [PlatformElement]?) -> [String] {
+        guard let platforms = platforms else {
+            return [String]()
+        }
+        return platforms.compactMap { $0.platform?.name }
+    }
+    
+    func getGenresAndTags(_ genres : [Genre]?) -> [String] {
+        guard let genres = genres else {
+            return [String]()
+        }
+        return genres.compactMap{ $0.name }
+    }
+    
+    func getScreenshots(_ screenshots : [ShortScreenshot]?) -> [String] {
+        guard let screenshots = screenshots else {
+            return [String]()
+        }
+        return screenshots.compactMap{ $0.image }
     }
 }

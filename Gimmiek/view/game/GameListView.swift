@@ -40,7 +40,9 @@ struct GameListView: View {
                     }.listRowBackground(SwiftUI.Color.clear)
                     
                     ForEach(games.games, id: \.uuid) { (game: GameUiModel) in
-                        NavigationLink(destination: GameDetailView(game: game).navigationBarTitle(game.name)) {
+                        NavigationLink(destination:
+                                        GameDetailView(game: game)
+                                        .navigationBarTitle(game.name)) {
                             GameItemView(game: game)
                         }
                         .padding(EdgeInsets(top: 150, leading: 0, bottom: 0, trailing: 0))
@@ -64,7 +66,6 @@ struct GameListView: View {
                         .frame(minWidth: 100, idealWidth: 300, maxWidth: 400, minHeight: 100, idealHeight: 300, maxHeight: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
             }
-            
         }
     }
 }
