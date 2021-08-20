@@ -100,10 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				D0BDA2A426C83BBE005E0382 /* custom */,
-				D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */,
-				D0BDA27026C80E92005E0382 /* ContentView.swift */,
 				D0BDA29E26C83B59005E0382 /* detail */,
 				D0BDA29126C828EB005E0382 /* game */,
+				D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */,
+				D0BDA27026C80E92005E0382 /* ContentView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";

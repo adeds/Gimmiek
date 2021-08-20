@@ -97,7 +97,7 @@ struct GameDetailView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(game.screenshots, id : \.self) { screenshot in
-                                    WebImage(url: URL(string: game.backgroundImage))
+                                    WebImage(url: URL(string: screenshot))
                                         .resizable()
                                         .placeholder(Image("image_not_found"))
                                         .indicator(.activity)
