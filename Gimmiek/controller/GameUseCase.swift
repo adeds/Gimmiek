@@ -7,15 +7,13 @@
 
 import Foundation
 
-class GameUseCase : ObservableObject {
+class GameUseCase: ObservableObject {
     
     @Published var games = [GameUiModel]()
     
     @Published var isLoading = false
-    var startIndex: Int { games.startIndex }
-    var endIndex: Int { games.endIndex }
     
-    var page = 1
+    private var page = 1
     
     let gameListUrl = Constant.rawgBaseUrl
         + Constant.Path.games
@@ -26,17 +24,16 @@ class GameUseCase : ObservableObject {
         fetchGameList(url: url)
     }
     
-    func searchGame(keyword : String){
+    func searchGame(keyword: String) {
         let url = gameListUrl + Constant.QueryName.search + keyword
-        print(url)
         fetchGameList(url: url, isAppend: false)
     }
     
-    func fetchGameList(url : String, isAppend : Bool = true) {
+    func fetchGameList(url: String, isAppend: Bool = true) {
         guard let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             return
         }
-        print(url)
+        
         if let url = URL(string: encodedUrl) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in

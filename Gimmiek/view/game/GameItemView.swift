@@ -12,7 +12,7 @@ struct GameItemView: View {
     
     var body: some View {
         HStack(alignment: .bottom) {
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 Text("\(game.name)")
                     .font(.headline)
                 Text("\(game.released)")

@@ -10,8 +10,9 @@ import SwiftUI
 struct AccountDetailView: View {
     var body: some View {
         VStack{
-            Text("Adetya Dyas Saputra").font(.largeTitle)
-                .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
+            Text("Adetya Dyas Saputra")
+                .font(.largeTitle)
+                .padding(.all, 5)
                 .background(Blur(style: .systemUltraThinMaterial))
                 .cornerRadius(10)
             Image("me")

@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D053C89A26CA9F6B00A20CCC /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053C89926CA9F6B00A20CCC /* ImageLoader.swift */; };
-		D053C89D26CAA14500A20CCC /* UrlImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053C89C26CAA14500A20CCC /* UrlImage.swift */; };
 		D085BC1926C8CE4B00380C64 /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */; };
 		D0BDA26F26C80E92005E0382 /* GimmiekApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */; };
 		D0BDA27126C80E92005E0382 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA27026C80E92005E0382 /* ContentView.swift */; };
@@ -23,11 +21,11 @@
 		D0BDA2A026C83B72005E0382 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA29F26C83B72005E0382 /* GameDetailView.swift */; };
 		D0BDA2A626C83BD0005E0382 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA2A526C83BD0005E0382 /* Blur.swift */; };
 		D0BDA2AA26C84161005E0382 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA2A926C84161005E0382 /* EmptyStateView.swift */; };
+		D0EE6C6B26D00342001286FD /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D0EE6C6A26D00342001286FD /* SDWebImageSwiftUI */; };
+		D0F97A8E26CEC2C4003E5A32 /* game.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0F97A8C26CEC2C4003E5A32 /* game.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D053C89926CA9F6B00A20CCC /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		D053C89C26CAA14500A20CCC /* UrlImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlImage.swift; sourceTree = "<group>"; };
 		D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		D0BDA26B26C80E92005E0382 /* Gimmiek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gimmiek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GimmiekApp.swift; sourceTree = "<group>"; };
@@ -44,6 +42,7 @@
 		D0BDA29F26C83B72005E0382 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		D0BDA2A526C83BD0005E0382 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		D0BDA2A926C84161005E0382 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		D0F97A8D26CEC2C4003E5A32 /* game.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = game.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EE6C6B26D00342001286FD /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +76,7 @@
 		D0BDA26D26C80E92005E0382 /* Gimmiek */ = {
 			isa = PBXGroup;
 			children = (
+				D0F97A8B26CEC2AD003E5A32 /* coredata */,
 				D0BDA29626C82DAB005E0382 /* util */,
 				D0BDA28026C80EF0005E0382 /* model */,
 				D0BDA27E26C80EE7005E0382 /* view */,
@@ -137,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				D0BDA29726C82DBA005E0382 /* Constant.swift */,
-				D053C89926CA9F6B00A20CCC /* ImageLoader.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -156,9 +156,16 @@
 			children = (
 				D0BDA2A526C83BD0005E0382 /* Blur.swift */,
 				D0BDA2A926C84161005E0382 /* EmptyStateView.swift */,
-				D053C89C26CAA14500A20CCC /* UrlImage.swift */,
 			);
 			path = custom;
+			sourceTree = "<group>";
+		};
+		D0F97A8B26CEC2AD003E5A32 /* coredata */ = {
+			isa = PBXGroup;
+			children = (
+				D0F97A8C26CEC2C4003E5A32 /* game.xcdatamodeld */,
+			);
+			path = coredata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +184,9 @@
 			dependencies = (
 			);
 			name = Gimmiek;
+			packageProductDependencies = (
+				D0EE6C6A26D00342001286FD /* SDWebImageSwiftUI */,
+			);
 			productName = Gimmiek;
 			productReference = D0BDA26B26C80E92005E0382 /* Gimmiek.app */;
 			productType = "com.apple.product-type.application";
@@ -204,6 +214,9 @@
 				Base,
 			);
 			mainGroup = D0BDA26226C80E92005E0382;
+			packageReferences = (
+				D0EE6C6926D00342001286FD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = D0BDA26C26C80E92005E0382 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -235,6 +248,7 @@
 				D0BDA2A626C83BD0005E0382 /* Blur.swift in Sources */,
 				D0BDA28B26C826B5005E0382 /* GameUiModel.swift in Sources */,
 				D0BDA29826C82DBA005E0382 /* Constant.swift in Sources */,
+				D0F97A8E26CEC2C4003E5A32 /* game.xcdatamodeld in Sources */,
 				D0BDA29426C828FB005E0382 /* GameItemView.swift in Sources */,
 				D0BDA28226C80F52005E0382 /* Game.swift in Sources */,
 				D0BDA26F26C80E92005E0382 /* GimmiekApp.swift in Sources */,
@@ -242,8 +256,6 @@
 				D085BC1926C8CE4B00380C64 /* AccountDetailView.swift in Sources */,
 				D0BDA28826C82660005E0382 /* GameUseCase.swift in Sources */,
 				D0BDA2AA26C84161005E0382 /* EmptyStateView.swift in Sources */,
-				D053C89A26CA9F6B00A20CCC /* ImageLoader.swift in Sources */,
-				D053C89D26CAA14500A20CCC /* UrlImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +444,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D0EE6C6926D00342001286FD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D0EE6C6A26D00342001286FD /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0EE6C6926D00342001286FD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		D0F97A8C26CEC2C4003E5A32 /* game.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D0F97A8D26CEC2C4003E5A32 /* game.xcdatamodel */,
+			);
+			currentVersion = D0F97A8D26CEC2C4003E5A32 /* game.xcdatamodel */;
+			path = game.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D0BDA26326C80E92005E0382 /* Project object */;
 }

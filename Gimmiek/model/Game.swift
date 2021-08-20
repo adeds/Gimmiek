@@ -20,7 +20,7 @@ struct Game: Codable {
     let noindex, nofollow: Bool?
     let filters: Filters?
     let nofollowCollections: [String]?
-
+    
     enum CodingKeys: String, CodingKey {
         case count, results
         case seoTitle = "seo_title"
@@ -68,7 +68,7 @@ struct Result: Codable {
     let tags: [Genre]?
     let esrbRating: EsrbRating?
     let shortScreenshots: [ShortScreenshot]?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, slug, name, released, tba
         case backgroundImage = "background_image"
@@ -103,7 +103,7 @@ struct Genre: Codable {
     let gamesCount: Int?
     let imageBackground: String?
     let domain: Domain?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name, slug
         case gamesCount = "games_count"
@@ -134,7 +134,7 @@ struct PlatformElement: Codable {
     let platform: PlatformPlatform?
     let releasedAt: String?
     let requirementsEn, requirementsRu: Requirements?
-
+    
     enum CodingKeys: String, CodingKey {
         case platform
         case releasedAt = "released_at"
@@ -147,7 +147,7 @@ struct PlatformElement: Codable {
 struct PlatformPlatform: Codable {
     let name, slug, imageBackground: String?
     let id, gamesCount: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name, slug
         case gamesCount = "games_count"
@@ -190,24 +190,24 @@ struct Store: Codable {
 // MARK: - Encode/decode helpers
 
 class JSONNull: Codable, Hashable {
-
+    
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
     }
-
+    
     public var hashValue: Int {
         return 0
     }
-
+    
     public init() {}
-
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if !container.decodeNil() {
             throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
         }
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encodeNil()

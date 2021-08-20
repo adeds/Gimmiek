@@ -7,22 +7,22 @@
 
 import Foundation
 
-class GameUiModel : Identifiable{
+class GameUiModel: Identifiable{
     var uuid = UUID()
     var name, released, updated: String
-    var backgroundImage: String?
+    var backgroundImage: String
     var rating : Double
     var ratingTop : Int
     var platforms, genres, screenshots, tags: [String]
     
-    init(name:String, released: String, updated:String,
+    init(name: String, released: String, updated: String,
          backgroundImage: String?,
-         rating : Double, ratingTop : Int,
-         platforms :[String], genres : [String], screenshots : [String], tags : [String]) {
+         rating: Double, ratingTop: Int,
+         platforms: [String], genres: [String], screenshots: [String], tags: [String]) {
         self.name = name
         self.released = released
         self.updated = updated
-        self.backgroundImage = backgroundImage
+        self.backgroundImage = backgroundImage ?? ""
         self.rating = rating
         self.ratingTop = ratingTop
         self.platforms = platforms
