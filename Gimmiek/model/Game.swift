@@ -14,177 +14,65 @@ import Foundation
 
 // MARK: - Game
 struct Game: Codable {
-    let count: Int
     let results: [Result]
-    let seoTitle, seoDescription, seoKeywords, seoH1, gameDescription: String?
-    let noindex, nofollow: Bool?
-    let filters: Filters?
-    let nofollowCollections: [String]?
     
     enum CodingKeys: String, CodingKey {
-        case count, results
-        case seoTitle = "seo_title"
-        case seoDescription = "seo_description"
-        case seoKeywords = "seo_keywords"
-        case seoH1 = "seo_h1"
-        case noindex, nofollow
-        case gameDescription = "description"
-        case filters
-        case nofollowCollections = "nofollow_collections"
+        case results
     }
-}
-
-// MARK: - Filters
-struct Filters: Codable {
-    let years: [FiltersYear]?
-}
-
-// MARK: - FiltersYear
-struct FiltersYear: Codable {
-    let count, decade, from, to: Int?
-    let filter: String
-    let years: [YearYear]
-    let nofollow: Bool
-}
-
-// MARK: - YearYear
-struct YearYear: Codable {
-    let year, count: Int?
-    let nofollow: Bool?
 }
 
 // MARK: - Result
 struct Result: Codable {
     let id: Int?
-    let slug, name, released, backgroundImage, updated: String?
-    let tba: Bool?
+    let name, released, backgroundImage, updated: String?
     let rating: Double?
-    let ratings: [Rating]?
-    let ratingsCount, reviewsTextCount, added, reviewsCount, metacritic, playtime, suggestionsCount, ratingTop: Int?
+    let ratingTop: Int?
     let platforms: [PlatformElement]?
-    let parentPlatforms: [ParentPlatform]?
     let genres: [Genre]?
-    let stores: [Store]?
     let tags: [Genre]?
-    let esrbRating: EsrbRating?
     let shortScreenshots: [ShortScreenshot]?
+
     
     enum CodingKeys: String, CodingKey {
-        case id, slug, name, released, tba
-        case backgroundImage = "background_image"
-        case rating
+        case id, name, released, rating ,updated, platforms, genres, tags
         case ratingTop = "rating_top"
-        case ratings
-        case ratingsCount = "ratings_count"
-        case reviewsTextCount = "reviews_text_count"
-        case added
-        case metacritic, playtime
-        case suggestionsCount = "suggestions_count"
-        case updated
-        case reviewsCount = "reviews_count"
-        case platforms
-        case parentPlatforms = "parent_platforms"
-        case genres, stores, tags
-        case esrbRating = "esrb_rating"
+        case backgroundImage = "background_image"
         case shortScreenshots = "short_screenshots"
     }
-}
-
-// MARK: - EsrbRating
-struct EsrbRating: Codable {
-    let id: Int?
-    let name, slug: String?
 }
 
 // MARK: - Genre
 struct Genre: Codable {
     let id: Int?
-    let name, slug: String?
-    let gamesCount: Int?
-    let imageBackground: String?
-    let domain: Domain?
+    let name: String?
     
     enum CodingKeys: String, CodingKey {
-        case id, name, slug
-        case gamesCount = "games_count"
-        case imageBackground = "image_background"
-        case domain
+        case id, name
     }
-}
-
-enum Domain: String, Codable {
-    case appsAppleCOM = "apps.apple.com"
-    case epicgamesCOM = "epicgames.com"
-    case gogCOM = "gog.com"
-    case marketplaceXboxCOM = "marketplace.xbox.com"
-    case microsoftCOM = "microsoft.com"
-    case nintendoCOM = "nintendo.com"
-    case playGoogleCOM = "play.google.com"
-    case storePlaystationCOM = "store.playstation.com"
-    case storeSteampoweredCOM = "store.steampowered.com"
-}
-
-// MARK: - ParentPlatform
-struct ParentPlatform: Codable {
-    let platform: EsrbRating?
 }
 
 // MARK: - PlatformElement
 struct PlatformElement: Codable {
     let platform: PlatformPlatform?
-    let releasedAt: String?
-    let requirementsEn, requirementsRu: Requirements?
     
     enum CodingKeys: String, CodingKey {
         case platform
-        case releasedAt = "released_at"
-        case requirementsEn = "requirements_en"
-        case requirementsRu = "requirements_ru"
     }
 }
 
 // MARK: - PlatformPlatform
 struct PlatformPlatform: Codable {
-    let name, slug, imageBackground: String?
-    let id, gamesCount: Int?
+    let name : String?
     
     enum CodingKeys: String, CodingKey {
-        case id, name, slug
-        case gamesCount = "games_count"
-        case imageBackground = "image_background"
+        case name
     }
-}
-
-// MARK: - Requirements
-struct Requirements: Codable {
-    let minimum: String?
-    let recommended: String?
-}
-
-// MARK: - Rating
-struct Rating: Codable {
-    let id, count: Int?
-    let title: Title
-    let percent: Double?
-}
-
-enum Title: String, Codable {
-    case exceptional = "exceptional"
-    case meh = "meh"
-    case recommended = "recommended"
-    case skip = "skip"
 }
 
 // MARK: - ShortScreenshot
 struct ShortScreenshot: Codable {
     let id: Int?
     let image: String?
-}
-
-// MARK: - Store
-struct Store: Codable {
-    let id: Int?
-    let store: Genre?
 }
 
 // MARK: - Encode/decode helpers

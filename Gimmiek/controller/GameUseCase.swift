@@ -86,6 +86,7 @@ class GameUseCase: ObservableObject {
         do {
             let gameList = try decoder.decode(Game.self, from: data).results
             return gameList.map({ (game) -> GameUiModel in
+                let gameId = game.id
                 let name = game.name ?? " - "
                 let released = game.released ?? " - "
                 let updated = game.released ?? " - "
@@ -96,7 +97,8 @@ class GameUseCase: ObservableObject {
                 let genres = getGenresAndTags(game.genres)
                 let screenshots = getScreenshots(game.shortScreenshots)
                 let tags = getGenresAndTags(game.tags)
-                return GameUiModel(name: name, released: released, updated: updated,
+                return GameUiModel(gameId: gameId, name: name,
+                                   released: released, updated: updated,
                                    backgroundImage: backgroundImage,
                                    rating: rating, ratingTop: ratingTop,
                                    platforms: platforms , genres: genres, screenshots: screenshots, tags: tags)
