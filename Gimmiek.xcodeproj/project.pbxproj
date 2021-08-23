@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0380CF926D3C7140020401E /* GameDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0380CF826D3C7140020401E /* GameDataProvider.swift */; };
 		D085BC1926C8CE4B00380C64 /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */; };
 		D0BDA26F26C80E92005E0382 /* GimmiekApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */; };
 		D0BDA27126C80E92005E0382 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA27026C80E92005E0382 /* ContentView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0380CF826D3C7140020401E /* GameDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataProvider.swift; sourceTree = "<group>"; };
 		D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		D0BDA26B26C80E92005E0382 /* Gimmiek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gimmiek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GimmiekApp.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				D0F97A8C26CEC2C4003E5A32 /* game.xcdatamodeld */,
+				D0380CF826D3C7140020401E /* GameDataProvider.swift */,
 			);
 			path = coredata;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				D0BDA27126C80E92005E0382 /* ContentView.swift in Sources */,
 				D0BDA28F26C828CC005E0382 /* GameListView.swift in Sources */,
 				D0BDA2A626C83BD0005E0382 /* Blur.swift in Sources */,
+				D0380CF926D3C7140020401E /* GameDataProvider.swift in Sources */,
 				D0BDA28B26C826B5005E0382 /* GameUiModel.swift in Sources */,
 				D0BDA29826C82DBA005E0382 /* Constant.swift in Sources */,
 				D0F97A8E26CEC2C4003E5A32 /* game.xcdatamodeld in Sources */,

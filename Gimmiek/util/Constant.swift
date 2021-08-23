@@ -19,4 +19,9 @@ struct Constant {
         static let page = "&page="
         static let search = "&search="
     }
+    
+    struct CoreData {
+        static let gameDataName = "game"
+        static let gameDataModel = "GameDataModel"
+    }
 }
