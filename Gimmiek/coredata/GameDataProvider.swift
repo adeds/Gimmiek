@@ -99,7 +99,7 @@ class GameDataProvider {
         }
     }
 
-    private func deleteFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void) {
+    func deleteFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void) {
         let taskContext = newTaskContext()
         taskContext.perform {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constant.CoreData.gameDataModel)

@@ -13,9 +13,15 @@ struct GameFavoritesView: View {
     var provider: GameDataProvider = { return GameDataProvider() }()
     
     
+    fileprivate func loadFav() {
+        provider.getAllFavorites(){ list in
+            games.removeAll()
+            games.append(contentsOf: list)
+        }
+    }
+    
     var body: some View {
         ZStack {
-            
             List {
                 ForEach(games, id: \.uuid) { (game: GameUiModel) in
                     NavigationLink(
@@ -34,8 +40,16 @@ struct GameFavoritesView: View {
                     .cornerRadius(10)
                     
                 }
+                .onDelete(perform: { indexSet in
+                    withAnimation{
+                        indexSet.forEach { index in
+                            provider.deleteFavorites(games[index]) {
+                                loadFav()
+                            }
+                        }
+                    }
+                })
                 .listRowBackground(SwiftUI.Color.clear)
-                
             }
             
             VStack {
@@ -47,10 +61,7 @@ struct GameFavoritesView: View {
             }
         }
         .onAppear(){
-            provider.getAllFavorites(){ list in
-                games.removeAll()
-                games.append(contentsOf: list)
-            }
+            loadFav()
         }.background(Image("game_bg").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
     }
 }
