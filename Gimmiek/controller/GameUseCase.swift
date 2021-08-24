@@ -20,6 +20,7 @@ class GameUseCase: ObservableObject {
         + Constant.QueryName.key + Constant.rawrgApiKey
     
     init() {
+        page = 1
         let url = gameListUrl + Constant.QueryName.page + String(page)
         fetchGameList(url: url)
     }
@@ -27,6 +28,13 @@ class GameUseCase: ObservableObject {
     func searchGame(keyword: String) {
         let url = gameListUrl + Constant.QueryName.search + keyword
         fetchGameList(url: url, isAppend: false)
+    }
+    
+    func loadMore(game game : GameUiModel) {
+        if(games[games.count-5].uuid == game.uuid){
+            let url = gameListUrl + Constant.QueryName.page + String(page+1)
+            fetchGameList(url: url)
+        }        
     }
     
     func fetchGameList(url: String, isAppend: Bool = true) {

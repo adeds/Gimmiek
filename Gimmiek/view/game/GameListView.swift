@@ -50,6 +50,9 @@ struct GameListView: View {
                                 .navigationBarTitle(game.name)) {
                             GameItemView(game: game)
                         }
+                        .onDisappear(){
+                            games.loadMore(game: game)
+                        }
                         .padding(EdgeInsets(top: 150, leading: 0, bottom: 0, trailing: 0))
                         .background(
                             WebImage(url: URL(string: game.backgroundImage))
@@ -59,6 +62,7 @@ struct GameListView: View {
                                 .transition(.fade(duration: 0.5))
                         )
                         .cornerRadius(10)
+                        
                     }
                     .listRowBackground(SwiftUI.Color.clear)
                     
