@@ -24,4 +24,8 @@ struct Constant {
         static let gameDataName = "game"
         static let gameDataModel = "GameDataModel"
     }
+    
+    struct UserDefault {
+        static let name = "savedName"
+    }
 }

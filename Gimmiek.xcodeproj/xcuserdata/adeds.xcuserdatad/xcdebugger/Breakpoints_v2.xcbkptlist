@@ -14,8 +14,8 @@
             filePath = "Gimmiek/controller/GameUseCase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "fetchGameList(url:isAppend:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Gimmiek/controller/GameUseCase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "fetchGameList(url:isAppend:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -258,6 +258,117 @@
             endingLineNumber = "96"
             landmarkName = "checkFavorites(_:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "772A8AE1-56DB-4655-9831-6A4365042C17"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gimmiek/controller/GameUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "fetchGameList(url:isAppend:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9BB0E6F2-91D9-4A36-8D2B-34A788DB2BC5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gimmiek/controller/GameUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "loadMore(game:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "909EBE61-E7E9-4E9A-A307-6A623888C349"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gimmiek/view/detail/AccountDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "455AA333-7FC2-4B23-97AA-D4547E9FD713"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gimmiek/view/detail/AccountDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "AccountDetailView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "455AA333-7FC2-4B23-97AA-D4547E9FD713 - 20ac612595e41dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of Gimmiek.AccountDetailView.savedName : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "Gimmiek"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeds/xcode/Gimmiek/Gimmiek/view/detail/AccountDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "455AA333-7FC2-4B23-97AA-D4547E9FD713 - 99360bbeb52f72b1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Gimmiek.AccountDetailView.init(input: Swift.String) -&gt; Gimmiek.AccountDetailView"
+                  moduleName = "Gimmiek"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeds/xcode/Gimmiek/Gimmiek/view/detail/AccountDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "51">
+               </Location>
+               <Location
+                  uuid = "455AA333-7FC2-4B23-97AA-D4547E9FD713 - 63e5ae65fbe23400"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Gimmiek.AccountDetailView.init() -&gt; Gimmiek.AccountDetailView"
+                  moduleName = "Gimmiek"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeds/xcode/Gimmiek/Gimmiek/view/detail/AccountDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "91">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

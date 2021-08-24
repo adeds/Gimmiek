@@ -13,26 +13,37 @@ class GameUseCase: ObservableObject {
     
     @Published var isLoading = false
     
+    private var isLastPage = false
+    
     private var page = 1
+    
+    private var currentUrl = ""
     
     let gameListUrl = Constant.rawgBaseUrl
         + Constant.Path.games
         + Constant.QueryName.key + Constant.rawrgApiKey
     
     init() {
-        page = 1
-        let url = gameListUrl + Constant.QueryName.page + String(page)
-        fetchGameList(url: url)
+        searchGame(keyword: "")
     }
     
     func searchGame(keyword: String) {
-        let url = gameListUrl + Constant.QueryName.search + keyword
-        fetchGameList(url: url, isAppend: false)
+        page = 1
+        currentUrl = gameListUrl + Constant.QueryName.search + keyword
+        fetchGameList(url: currentUrl + Constant.QueryName.page + String(page), isAppend: false)
     }
     
-    func loadMore(game game : GameUiModel) {
+    func loadMore(game : GameUiModel) {
+        if isLoading || isLastPage {
+            return
+        }
+        if games.count < 9 {
+            return
+        }
+        
         if(games[games.count-5].uuid == game.uuid){
-            let url = gameListUrl + Constant.QueryName.page + String(page+1)
+            page = page + 1
+            let url = currentUrl + Constant.QueryName.page + String(page)
             fetchGameList(url: url)
         }        
     }
@@ -41,7 +52,7 @@ class GameUseCase: ObservableObject {
         guard let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             return
         }
-        
+        print(url)
         if let url = URL(string: encodedUrl) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -92,8 +103,9 @@ class GameUseCase: ObservableObject {
     func parseJSON(_ data : Data) -> [GameUiModel]? {
         let decoder = JSONDecoder()
         do {
-            let gameList = try decoder.decode(Game.self, from: data).results
-            return gameList.map({ (game) -> GameUiModel in
+            let gameResponse = try decoder.decode(Game.self, from: data)
+            self.isLastPage = gameResponse.next == nil
+            return gameResponse.results.map({ (game) -> GameUiModel in
                 let gameId = game.id
                 let name = game.name ?? " - "
                 let released = game.released ?? " - "

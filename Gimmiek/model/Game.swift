@@ -15,9 +15,10 @@ import Foundation
 // MARK: - Game
 struct Game: Codable {
     let results: [Result]
+    let next : String?
     
     enum CodingKeys: String, CodingKey {
-        case results
+        case results, next
     }
 }
 
