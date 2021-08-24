@@ -85,18 +85,6 @@ class GameDataProvider {
         }
     }
     
-    func listToJsonString(list : [String]) -> String {
-        let jsonEncoder = JSONEncoder()
-        do {
-            let jsonData = try jsonEncoder.encode(list)
-            let json = String(data: jsonData, encoding: String.Encoding.utf16) ?? ""
-            return json
-        }catch{
-            print(error)
-            return ""
-        }
-    }
-    
     func checkFavorites(_ gameUiModel: GameUiModel, completion: @escaping(_ isFavorite: Bool) -> Void) {
         let taskContext = newTaskContext()
         taskContext.perform {
@@ -118,6 +106,66 @@ class GameDataProvider {
                 print("Could not save. \(error), \(error.userInfo)")
             }
             
+        }
+    }
+    
+    func getAllFavorites(completion: @escaping(_ listFavorites: [GameUiModel]) -> Void) {
+        let taskContext = newTaskContext()
+        taskContext.perform {
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constant.CoreData.gameDataModel)
+            
+            do {
+                let results = try taskContext.fetch(fetchRequest)
+                var games: [GameUiModel] = []
+                
+                for result in results {
+                    let game = GameUiModel(
+                        gameId: Int(result.value(forKeyPath: GameContract.gameId) as? Int16 ?? 0),
+                        name: result.value(forKeyPath: GameContract.name) as? String ?? " - ",
+                        released: result.value(forKeyPath: GameContract.released) as? String ?? " - ",
+                        updated: result.value(forKeyPath: GameContract.updated) as? String ?? " - ",
+                        backgroundImage: result.value(forKeyPath: GameContract.backgroundImage) as? String ?? " - ",
+                        rating: result.value(forKeyPath: GameContract.gameId) as? Double ?? 0.0,
+                        ratingTop: Int(result.value(forKeyPath: GameContract.ratingTop) as? Int16 ?? 0),
+                        platforms: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.platforms) as? String ?? " - "),
+                        genres: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.genres) as? String ?? " - "),
+                        screenshots: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.screenshots) as? String ?? " - "),
+                        tags: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.tags) as? String ?? " - ")
+                    )
+                    
+                    games.append(game)
+                }
+                completion(games)
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
+        }
+    }
+    
+    private func listToJsonString(list : [String]) -> String {
+        do {
+            let data =  try JSONSerialization.data(withJSONObject:list, options: .prettyPrinted)
+            let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String?
+            return json ?? ""
+        } catch {
+            print(error)
+            return ""
+        }
+    }
+    
+    private func jsonStringToList(jsonString : String) -> [String] {
+        let data = jsonString.data(using: .utf8)!
+        do {
+            if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? [String] {
+                return jsonArray
+            } else {
+                print("Bad Json")
+                return [String]()
+            }
+        } catch let error as NSError {
+            print(error)
+            return [String]()
         }
     }
 }
