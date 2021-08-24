@@ -19,6 +19,7 @@ struct AccountDetailView: View {
                 .padding(.all, 5)
                 .background(Blur(style: .systemUltraThinMaterial))
                 .cornerRadius(10)
+                .padding(.top, 30)
             
             Image("me")
                 .resizable()
@@ -33,9 +34,13 @@ struct AccountDetailView: View {
                         account.name = input
                       })
                 .keyboardType(.webSearch)
-                .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5))
+                .padding(.all, 10)
                 .background(Blur(style: .systemUltraThinMaterial))
                 .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.white, lineWidth: 1)
+                )
                 .padding(.horizontal, 20)
             
             Spacer()
@@ -65,6 +70,6 @@ struct AccountDetailView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 30)
             
-        }.background(Image("game_bg1"))
+        }.background(Image("game_bg").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
     }
 }

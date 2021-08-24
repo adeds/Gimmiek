@@ -29,8 +29,12 @@
 	<true/>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIColorName</key>
+		<string>bg_launcher</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
 		<key>UIImageName</key>
-		<string>game_bg1</string>
+		<string>launchhh</string>
 	</dict>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

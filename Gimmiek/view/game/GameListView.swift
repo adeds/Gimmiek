@@ -25,7 +25,7 @@ struct GameListView: View {
                                 .cornerRadius(10)
                             
                             NavigationLink(
-                                destination: AccountDetailView().navigationBarTitle("About me")) {
+                                destination: AccountDetailView()) {
                                 EmptyView()
                             }
                         }.aspectRatio(contentMode: .fit)
@@ -72,7 +72,7 @@ struct GameListView: View {
                     UITableView.appearance().backgroundColor = .clear
                     UITableViewCell.appearance().backgroundColor = .clear
                 }
-                .background(Image("game_bg1"))
+                .background(Image("game_bg").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
                 .navigationBarTitle("Gimmiek")
                 
                 VStack {

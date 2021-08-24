@@ -143,7 +143,7 @@ struct GameDetailView: View {
             
             
         })
-        .background(Image("game_bg1"))
+        .background(Image("game_bg").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
         .onAppear() {
             provider.checkFavorites(game) { isFav in
                 isFavorite = isFav

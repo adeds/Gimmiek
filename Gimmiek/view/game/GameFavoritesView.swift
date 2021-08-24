@@ -38,7 +38,7 @@ struct GameFavoritesView: View {
                 games.removeAll()
                 games.append(contentsOf: list)
             }
-        }
+        }.background(Image("game_bg").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
             
     }
 }

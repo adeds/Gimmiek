@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "No data-cuate.png",
+      "filename" : "joystick.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "No data-cuate-1.png",
+      "filename" : "joystick-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "No data-cuate-2.png",
+      "filename" : "joystick-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
