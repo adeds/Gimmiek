@@ -19,11 +19,13 @@ struct AccountDetailView: View {
                 .padding(.all, 5)
                 .background(Blur(style: .systemUltraThinMaterial))
                 .cornerRadius(10)
+            
             Image("me")
                 .resizable()
                 .clipShape(Circle())
                 .padding(30)
                 .aspectRatio(1, contentMode: .fit)
+            
             TextField("Ubah Nama",
                       text: $input,
                       onEditingChanged: {_ in },
@@ -35,6 +37,34 @@ struct AccountDetailView: View {
                 .background(Blur(style: .systemUltraThinMaterial))
                 .cornerRadius(10)
                 .padding(.horizontal, 20)
+            
+            Spacer()
+            
+            Button(action: {
+                
+            }, label: {
+                NavigationLink(destination: GameFavoritesView().navigationBarTitle("Favorites")) {
+                    Text("My Favorites")
+                        .frame(
+                            minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                            idealWidth: .infinity,
+                            maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,
+                            minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                            idealHeight: 40,
+                            maxHeight: 40,
+                            alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/
+                        )
+                }
+            })
+            .background(Blur())
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.white, lineWidth: 1)
+            )
+            .padding(.horizontal, 20)
+            .padding(.bottom, 30)
+            
         }.background(Image("game_bg1"))
     }
 }

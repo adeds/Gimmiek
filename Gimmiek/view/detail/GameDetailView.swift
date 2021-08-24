@@ -121,10 +121,18 @@ struct GameDetailView: View {
                     Spacer(minLength: 50)
                 }.padding(.all, 10)
             }
-            Button(getTitle()) {
-                changeFavorites()
-            }
-            .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: .infinity, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 40, maxHeight: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            Button(action: changeFavorites, label: {
+                Text(getTitle())
+                    .frame(
+                        minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                        idealWidth: .infinity,
+                        maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,
+                        minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                        idealHeight: 40,
+                        maxHeight: 40,
+                        alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/
+                    )
+            })
             .background(Blur())
             .cornerRadius(10)
             .overlay(
