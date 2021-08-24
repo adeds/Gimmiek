@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AccountDetailView: View {
     @ObservedObject var account = AccountUseCase()
-
+    
     @State var input: String = ""
     
     var body: some View {
-        VStack{
+        VStack {
             Text(account.name)
                 .font(.largeTitle)
                 .padding(.all, 5)
@@ -27,7 +27,7 @@ struct AccountDetailView: View {
                 .padding(30)
                 .aspectRatio(1, contentMode: .fit)
             
-            TextField("Ubah Nama",
+            TextField("Change Name",
                       text: $input,
                       onEditingChanged: {_ in },
                       onCommit: {
@@ -48,7 +48,8 @@ struct AccountDetailView: View {
             Button(action: {
                 
             }, label: {
-                NavigationLink(destination: GameFavoritesView().navigationBarTitle("Favorites")) {
+                NavigationLink(destination: GameFavoritesView()
+                                .navigationBarTitle("Favorites")) {
                     Text("My Favorites")
                         .frame(
                             minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
@@ -70,6 +71,8 @@ struct AccountDetailView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 30)
             
-        }.background(Image("game_bg").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
+        }.background(Image("game_bg")
+                        .resizable()
+                        .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
     }
 }

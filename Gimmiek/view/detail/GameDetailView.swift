@@ -11,7 +11,7 @@ import CoreData
 
 struct GameDetailView: View {
     
-    var game : GameUiModel
+    var game: GameUiModel
     
     var provider: GameDataProvider = { return GameDataProvider() }()
     @State var isFavorite = false
@@ -121,7 +121,7 @@ struct GameDetailView: View {
                     Spacer(minLength: 50)
                 }.padding(.all, 10)
             }
-            Button(action: changeFavorites, label: {
+            Button(action: changeFavorite, label: {
                 Text(getTitle())
                     .frame(
                         minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
@@ -143,11 +143,11 @@ struct GameDetailView: View {
             
             
         })
-        .background(Image("game_bg").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
+        .background(Image("game_bg")
+                        .resizable()
+                        .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
         .onAppear() {
-            provider.checkFavorites(game) { isFav in
-                isFavorite = isFav
-            }
+            checkFavorite()
         }
     }
     
@@ -155,9 +155,15 @@ struct GameDetailView: View {
         return isFavorite ? "Unfavorite" : "Favorite"
     }
     
-    private func changeFavorites() {
+    private func changeFavorite() {
         self.provider.changeFavorites(game){
-            isFavorite = !isFavorite
+            checkFavorite()
+        }
+    }
+    
+    private func checkFavorite() {
+        provider.checkFavorites(game) { isFav in
+            isFavorite = isFav
         }
     }
 }

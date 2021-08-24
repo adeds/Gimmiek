@@ -72,15 +72,22 @@ struct GameListView: View {
                     UITableView.appearance().backgroundColor = .clear
                     UITableViewCell.appearance().backgroundColor = .clear
                 }
-                .background(Image("game_bg").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
+                .background(Image("game_bg")
+                                .resizable()
+                                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
                 .navigationBarTitle("Gimmiek")
                 
                 VStack {
                     EmptyStateView(isLoading: games.isLoading, showEmptyState: games.games.isEmpty)
                         .frame(
-                            minWidth: 100, idealWidth: 300, maxWidth: 400,
-                            minHeight: 100, idealHeight: 300, maxHeight: 400,
-                            alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            minWidth: 100,
+                            idealWidth: 300,
+                            maxWidth: 400,
+                            minHeight: 100,
+                            idealHeight: 300,
+                            maxHeight: 400,
+                            alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/
+                        )
                 }
             }
         }

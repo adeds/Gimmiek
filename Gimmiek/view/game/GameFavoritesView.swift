@@ -62,6 +62,8 @@ struct GameFavoritesView: View {
         }
         .onAppear(){
             loadFav()
-        }.background(Image("game_bg").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
+        }.background(Image("game_bg")
+                        .resizable()
+                        .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
     }
 }

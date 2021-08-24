@@ -33,7 +33,7 @@ class GameUseCase: ObservableObject {
         fetchGameList(url: currentUrl + Constant.QueryName.page + String(page), isAppend: false)
     }
     
-    func loadMore(game : GameUiModel) {
+    func loadMore(game: GameUiModel) {
         if isLoading || isLastPage {
             return
         }
@@ -41,7 +41,7 @@ class GameUseCase: ObservableObject {
             return
         }
         
-        if(games[games.count-5].uuid == game.uuid){
+        if(games[games.count-5].uuid == game.uuid) {
             page = page + 1
             let url = currentUrl + Constant.QueryName.page + String(page)
             fetchGameList(url: url)
@@ -79,10 +79,10 @@ class GameUseCase: ObservableObject {
                 }
                 
                 DispatchQueue.main.async {
-                    if (!isAppend){
+                    if (!isAppend) {
                         self.games.removeAll()
                     }
-                    if !newGames.isEmpty{
+                    if !newGames.isEmpty {
                         self.games.append(contentsOf: newGames)
                     }
                     
@@ -94,18 +94,18 @@ class GameUseCase: ObservableObject {
                 self.isLoading = true
             }
             task.resume()
-        }else{
+        } else {
             print("url null")
         }
     }
     
     
-    func parseJSON(_ data : Data) -> [GameUiModel]? {
+    func parseJSON(_ data: Data) -> [GameUiModel]? {
         let decoder = JSONDecoder()
         do {
             let gameResponse = try decoder.decode(Game.self, from: data)
             self.isLastPage = gameResponse.next == nil
-            return gameResponse.results.map({ (game) -> GameUiModel in
+            return gameResponse.results.map( { (game) -> GameUiModel in
                 let gameId = game.id
                 let name = game.name ?? " - "
                 let released = game.released ?? " - "
@@ -130,21 +130,21 @@ class GameUseCase: ObservableObject {
         }
     }
     
-    func getPlatform(_ platforms : [PlatformElement]?) -> [String] {
+    func getPlatform(_ platforms: [PlatformElement]?) -> [String] {
         guard let platforms = platforms else {
             return [String]()
         }
         return platforms.compactMap { $0.platform?.name }
     }
     
-    func getGenresAndTags(_ genres : [Genre]?) -> [String] {
+    func getGenresAndTags(_ genres: [Genre]?) -> [String] {
         guard let genres = genres else {
             return [String]()
         }
         return genres.compactMap{ $0.name }
     }
     
-    func getScreenshots(_ screenshots : [ShortScreenshot]?) -> [String] {
+    func getScreenshots(_ screenshots: [ShortScreenshot]?) -> [String] {
         guard let screenshots = screenshots else {
             return [String]()
         }
