@@ -58,6 +58,20 @@ class GameDataProvider {
     }
     
     func changeFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void) {
+        checkFavorites(gameUiModel){ isFav in
+            if isFav {
+                self.deleteFavorites(gameUiModel){
+                    completion()
+                }
+            } else {
+                self.addFavorites(gameUiModel){
+                    completion()
+                }
+            }
+        }
+    }
+    
+    private func addFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void) {
         let taskContext = newTaskContext()
         taskContext.performAndWait {
             if let entity = NSEntityDescription.entity(forEntityName: Constant.CoreData.gameDataModel, in: taskContext) {
@@ -84,6 +98,23 @@ class GameDataProvider {
             
         }
     }
+
+    private func deleteFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void) {
+        let taskContext = newTaskContext()
+        taskContext.perform {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constant.CoreData.gameDataModel)
+            fetchRequest.fetchLimit = 1
+            fetchRequest.predicate = NSPredicate(format: "gameId == \(gameUiModel.gameId ?? 0)")
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            batchDeleteRequest.resultType = .resultTypeCount
+            if let batchDeleteResult = try? taskContext.execute(batchDeleteRequest) as? NSBatchDeleteResult {
+                if batchDeleteResult.result != nil {
+                    completion()
+                }
+            }
+        }
+    }
+
     
     func checkFavorites(_ gameUiModel: GameUiModel, completion: @escaping(_ isFavorite: Bool) -> Void) {
         let taskContext = newTaskContext()

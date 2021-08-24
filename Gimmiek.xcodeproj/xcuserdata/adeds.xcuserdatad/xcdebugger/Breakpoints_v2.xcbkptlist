@@ -371,5 +371,149 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D341581E-61DD-438A-BBE0-9553AF7230C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gimmiek/coredata/GameDataProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "changeFavorites(_:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D341581E-61DD-438A-BBE0-9553AF7230C7 - efa05e0cb5c0ac68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Gimmiek.GameDataProvider.changeFavorites(_: Gimmiek.GameUiModel, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Gimmiek"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeds/xcode/Gimmiek/Gimmiek/coredata/GameDataProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "255">
+               </Location>
+               <Location
+                  uuid = "D341581E-61DD-438A-BBE0-9553AF7230C7 - 1aff0d4bf0c2318"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Bool) -&gt; () in Gimmiek.GameDataProvider.changeFavorites(_: Gimmiek.GameUiModel, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Gimmiek"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeds/xcode/Gimmiek/Gimmiek/coredata/GameDataProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62245D1B-03DD-4980-9866-514136265A9D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gimmiek/coredata/GameDataProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "changeFavorites(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6647844E-4DE9-4608-8DFF-F6AAE077553B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gimmiek/coredata/GameDataProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "changeFavorites(_:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6647844E-4DE9-4608-8DFF-F6AAE077553B - efa05e0cb5c0acec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Gimmiek.GameDataProvider.changeFavorites(_: Gimmiek.GameUiModel, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Gimmiek"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeds/xcode/Gimmiek/Gimmiek/coredata/GameDataProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "357">
+               </Location>
+               <Location
+                  uuid = "6647844E-4DE9-4608-8DFF-F6AAE077553B - e66c1c140e4cd9f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in closure #1 (Swift.Bool) -&gt; () in Gimmiek.GameDataProvider.changeFavorites(_: Gimmiek.GameUiModel, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Gimmiek"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeds/xcode/Gimmiek/Gimmiek/coredata/GameDataProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "517ADA4D-BD19-40D2-A63F-738DDB5605A3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gimmiek/coredata/GameDataProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "changeFavorites(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8AA0F5C4-78E2-4AF8-AE4C-2140A44D88BA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gimmiek/coredata/GameDataProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "changeFavorites(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
