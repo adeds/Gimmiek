@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var games = GameUseCase()
+    
     var body: some View {
-        GameList()
+        GameListView(games: games)
     }
 }
