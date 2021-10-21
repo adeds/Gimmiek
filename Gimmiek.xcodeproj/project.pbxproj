@@ -64,6 +64,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D01272CE272127F000AF5D91 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				D0BDA28A26C826B5005E0382 /* GameUiModel.swift */,
+				D0BDA28126C80F52005E0382 /* Game.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		D0BDA26226C80E92005E0382 = {
 			isa = PBXGroup;
 			children = (
@@ -84,11 +93,9 @@
 		D0BDA26D26C80E92005E0382 /* Gimmiek */ = {
 			isa = PBXGroup;
 			children = (
-				D0F97A8B26CEC2AD003E5A32 /* coredata */,
-				D0BDA29626C82DAB005E0382 /* util */,
-				D0BDA28026C80EF0005E0382 /* model */,
-				D0BDA27E26C80EE7005E0382 /* view */,
-				D0BDA28626C8263B005E0382 /* controller */,
+				D0BDA28026C80EF0005E0382 /* data */,
+				D0BDA27E26C80EE7005E0382 /* presentation */,
+				D0BDA28626C8263B005E0382 /* domain */,
 				D0BDA27226C80E94005E0382 /* Assets.xcassets */,
 				D0BDA27726C80E94005E0382 /* Info.plist */,
 				D0BDA27426C80E94005E0382 /* Preview Content */,
@@ -104,7 +111,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		D0BDA27E26C80EE7005E0382 /* view */ = {
+		D0BDA27E26C80EE7005E0382 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
 				D0BDA2A426C83BBE005E0382 /* custom */,
@@ -113,25 +120,26 @@
 				D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */,
 				D0BDA27026C80E92005E0382 /* ContentView.swift */,
 			);
-			path = view;
+			path = presentation;
 			sourceTree = "<group>";
 		};
-		D0BDA28026C80EF0005E0382 /* model */ = {
+		D0BDA28026C80EF0005E0382 /* data */ = {
 			isa = PBXGroup;
 			children = (
-				D0BDA28126C80F52005E0382 /* Game.swift */,
-				D0BDA28A26C826B5005E0382 /* GameUiModel.swift */,
+				D0BDA29626C82DAB005E0382 /* util */,
+				D0F97A8B26CEC2AD003E5A32 /* coredata */,
+				D01272CE272127F000AF5D91 /* model */,
 			);
-			path = model;
+			path = data;
 			sourceTree = "<group>";
 		};
-		D0BDA28626C8263B005E0382 /* controller */ = {
+		D0BDA28626C8263B005E0382 /* domain */ = {
 			isa = PBXGroup;
 			children = (
 				D0BDA28726C82660005E0382 /* GameUseCase.swift */,
 				D0C36A3226D5463200D647FB /* AccountUseCase.swift */,
 			);
-			path = controller;
+			path = domain;
 			sourceTree = "<group>";
 		};
 		D0BDA29126C828EB005E0382 /* game */ = {
