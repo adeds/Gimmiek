@@ -50,7 +50,7 @@ struct GameListView: View {
                                 .navigationBarTitle(game.name)) {
                             GameItemView(game: game)
                         }
-                        .onDisappear(){
+                        .onDisappear {
                             games.loadMore(game: game)
                         }
                         .padding(EdgeInsets(top: 150, leading: 0, bottom: 0, trailing: 0))
@@ -67,7 +67,7 @@ struct GameListView: View {
                     .listRowBackground(SwiftUI.Color.clear)
                     
                 }
-                .onAppear() {
+                .onAppear {
                     UITableViewCell.appearance().selectionStyle = .none
                     UITableView.appearance().backgroundColor = .clear
                     UITableViewCell.appearance().backgroundColor = .clear

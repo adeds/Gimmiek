@@ -17,7 +17,11 @@ struct EmptyStateView: View {
                 VStack {
                     if isLoading {
                         ProgressView("Loading")
-                            .frame(width: 100, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(
+                                width: 100,
+                                height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/,
+                                alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/
+                            )
                     } else if showEmptyState {
                         Image("empty_icon")
                             .resizable()

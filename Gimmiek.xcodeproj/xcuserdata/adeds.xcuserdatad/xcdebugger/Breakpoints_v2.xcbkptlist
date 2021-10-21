@@ -46,10 +46,10 @@
             filePath = "Gimmiek/view/detail/GameDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "GameDetailView"
-            landmarkType = "14">
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "changeFavorite()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "59CDCA52-01E7-4AF5-BBC3-F115E09D94E2 - 323e3e5970107c1f"
@@ -94,9 +94,9 @@
             filePath = "Gimmiek/view/detail/GameDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "changeFavorites()"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "changeFavorite()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

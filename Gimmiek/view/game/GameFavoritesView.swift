@@ -12,9 +12,8 @@ struct GameFavoritesView: View {
     @State var games = [GameUiModel]()
     var provider: GameDataProvider = { return GameDataProvider() }()
     
-    
     fileprivate func loadFav() {
-        provider.getAllFavorites(){ list in
+        provider.getAllFavorites { list in
             games.removeAll()
             games.append(contentsOf: list)
         }
@@ -41,7 +40,7 @@ struct GameFavoritesView: View {
                     
                 }
                 .onDelete(perform: { indexSet in
-                    withAnimation{
+                    withAnimation {
                         indexSet.forEach { index in
                             provider.deleteFavorites(games[index]) {
                                 loadFav()
@@ -60,7 +59,7 @@ struct GameFavoritesView: View {
                         alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
         }
-        .onAppear(){
+        .onAppear {
             loadFav()
         }.background(Image("game_bg")
                         .resizable()

@@ -20,8 +20,8 @@ class GameUseCase: ObservableObject {
     private var currentUrl = ""
     
     let gameListUrl = Constant.rawgBaseUrl
-        + Constant.Path.games
-        + Constant.QueryName.key + Constant.rawrgApiKey
+    + Constant.Path.games
+    + Constant.QueryName.key + Constant.rawrgApiKey
     
     init() {
         searchGame(keyword: "")
@@ -41,11 +41,11 @@ class GameUseCase: ObservableObject {
             return
         }
         
-        if(games[games.count-5].uuid == game.uuid) {
-            page = page + 1
+        if games[games.count-5].uuid == game.uuid {
+            page += 1
             let url = currentUrl + Constant.QueryName.page + String(page)
             fetchGameList(url: url)
-        }        
+        }
     }
     
     func fetchGameList(url: String, isAppend: Bool = true) {
@@ -55,7 +55,7 @@ class GameUseCase: ObservableObject {
         print(url)
         if let url = URL(string: encodedUrl) {
             let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { (data, response, error) in
+            let task = session.dataTask(with: url) { (data, _, error) in
                 if error != nil {
                     print(error ?? "error fetch data game")
                     DispatchQueue.main.async {
@@ -79,7 +79,7 @@ class GameUseCase: ObservableObject {
                 }
                 
                 DispatchQueue.main.async {
-                    if (!isAppend) {
+                    if !isAppend {
                         self.games.removeAll()
                     }
                     if !newGames.isEmpty {
@@ -98,14 +98,12 @@ class GameUseCase: ObservableObject {
             print("url null")
         }
     }
-    
-    
     func parseJSON(_ data: Data) -> [GameUiModel]? {
         let decoder = JSONDecoder()
         do {
             let gameResponse = try decoder.decode(Game.self, from: data)
             self.isLastPage = gameResponse.next == nil
-            return gameResponse.results.map( { (game) -> GameUiModel in
+            return gameResponse.results.map({(game) -> GameUiModel in
                 let gameId = game.id
                 let name = game.name ?? " - "
                 let released = game.released ?? " - "
@@ -121,7 +119,7 @@ class GameUseCase: ObservableObject {
                                    released: released, updated: updated,
                                    backgroundImage: backgroundImage,
                                    rating: rating, ratingTop: ratingTop,
-                                   platforms: platforms , genres: genres, screenshots: screenshots, tags: tags)
+                                   platforms: platforms, genres: genres, screenshots: screenshots, tags: tags)
             })
             
         } catch {
@@ -141,13 +139,13 @@ class GameUseCase: ObservableObject {
         guard let genres = genres else {
             return [String]()
         }
-        return genres.compactMap{ $0.name }
+        return genres.compactMap { $0.name }
     }
     
     func getScreenshots(_ screenshots: [ShortScreenshot]?) -> [String] {
         guard let screenshots = screenshots else {
             return [String]()
         }
-        return screenshots.compactMap{ $0.image }
+        return screenshots.compactMap { $0.image }
     }
 }

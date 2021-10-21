@@ -16,7 +16,6 @@ struct GameDetailView: View {
     var provider: GameDataProvider = { return GameDataProvider() }()
     @State var isFavorite = false
     
-    
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom), content: {
             ScrollView(.vertical, showsIndicators: false) {
@@ -39,7 +38,7 @@ struct GameDetailView: View {
                             
                         }.padding(.all, 10)
                         
-                        HStack(alignment: .center){
+                        HStack(alignment: .center) {
                             Text("Released : ")
                                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             
@@ -108,7 +107,11 @@ struct GameDetailView: View {
                                             .placeholder(Image("image_not_found"))
                                             .indicator(.activity)
                                             .transition(.fade(duration: 0.5))
-                                            .frame(width: 150, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                            .frame(
+                                                width: 150,
+                                                height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/,
+                                                alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/
+                                            )
                                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                                     }.padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
                                 }
@@ -141,12 +144,11 @@ struct GameDetailView: View {
             )
             .padding(.horizontal, 10)
             
-            
         })
         .background(Image("game_bg")
                         .resizable()
                         .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
-        .onAppear() {
+        .onAppear {
             checkFavorite()
         }
     }
@@ -156,7 +158,7 @@ struct GameDetailView: View {
     }
     
     private func changeFavorite() {
-        self.provider.changeFavorites(game){
+        self.provider.changeFavorites(game) {
             checkFavorite()
         }
     }

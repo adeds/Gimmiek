@@ -17,7 +17,7 @@ class GameDataProvider {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: {(_, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -58,13 +58,13 @@ class GameDataProvider {
     }
     
     func changeFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void) {
-        checkFavorites(gameUiModel){ isFav in
+        checkFavorites(gameUiModel) { isFav in
             if isFav {
-                self.deleteFavorites(gameUiModel){
+                self.deleteFavorites(gameUiModel) {
                     completion()
                 }
             } else {
-                self.addFavorites(gameUiModel){
+                self.addFavorites(gameUiModel) {
                     completion()
                 }
             }
@@ -115,7 +115,6 @@ class GameDataProvider {
         }
     }
 
-    
     func checkFavorites(_ gameUiModel: GameUiModel, completion: @escaping(_ isFavorite: Bool) -> Void) {
         let taskContext = newTaskContext()
         taskContext.perform {
@@ -125,7 +124,7 @@ class GameDataProvider {
             
             do {
                 if let result = try taskContext.fetch(fetchRequest).first {
-                    if let name = result.value(forKey: "name") as? String{
+                    if let name = result.value(forKey: "name") as? String {
                         completion(!name.isEmpty)
                     } else {
                         completion(false)
