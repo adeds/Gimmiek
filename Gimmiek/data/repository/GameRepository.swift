@@ -12,7 +12,7 @@ protocol GameRepositoryProtocol {
 
     var networker: NetworkerProtocol { get }
 
-    func loadMore(page:Int, keyword: String) -> AnyPublisher<Game, Error>
+    func loadMore(page:Int, keyword: String) -> Future<Game, Error>
 }
 
 final class GameRepository : GameRepositoryProtocol {
@@ -23,7 +23,7 @@ final class GameRepository : GameRepositoryProtocol {
         self.networker = networker
     }
     
-    func loadMore(page: Int, keyword: String) -> AnyPublisher<Game, Error> {
+    func loadMore(page: Int, keyword: String) -> Future<Game, Error> {
         let endpoint = Endpoint.game(page: page, keyword: keyword)
         return networker.get(type: Game.self,
                              url: endpoint.url,
