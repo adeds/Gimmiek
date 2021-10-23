@@ -9,7 +9,7 @@ import SwiftUI
 import Cleanse
 
 @main
-struct GimmiekApp: App {
+class GimmiekApp: App {
     var networker : NetworkerProtocol!
     var interactor: GameInteractorProtocol!
     var repository: GameRepositoryProtocol!
@@ -25,7 +25,7 @@ struct GimmiekApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            ContentView.init(viewModel: viewModel)
+            ContentView().environmentObject(viewModel)
         }
     }
 }

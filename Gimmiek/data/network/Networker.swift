@@ -40,8 +40,7 @@ class Networker: NetworkerProtocol {
                 case .failure(let error):
                     promise(.failure(
                         NSError(domain: error.destinationURL?.absoluteString ?? "", code: error.responseCode ?? 0)
-                    )
-                    )
+                    ))
                 }
             }
         })
@@ -51,7 +50,9 @@ class Networker: NetworkerProtocol {
 extension Networker {
     struct Module: Cleanse.Module {
         static func configure(binder: Binder<Unscoped>) {
-            binder.bind(NetworkerProtocol.self).to(factory: Networker.init)
+            binder.bind(NetworkerProtocol.self).to{
+                Networker()
+            }
         }
     }
 }

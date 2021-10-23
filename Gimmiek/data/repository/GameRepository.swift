@@ -11,8 +11,6 @@ import Cleanse
 
 protocol GameRepositoryProtocol {
 
-    var networker: NetworkerProtocol { get }
-
     func loadMore(page:Int, keyword: String) -> Future<Game, Error>
 }
 
@@ -31,7 +29,6 @@ final class GameRepository : GameRepositoryProtocol {
                              headers: endpoint.headers)
     }
 }
-
 
 extension GameRepository {
     struct Module: Cleanse.Module {

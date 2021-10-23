@@ -10,7 +10,6 @@ import Combine
 import Cleanse
 
 protocol GameInteractorProtocol {
-    var repository: GameRepositoryProtocol { get }
     func loadMore(page:Int, keyword:String) -> AnyPublisher<[GameUiModel], Error>
 }
 

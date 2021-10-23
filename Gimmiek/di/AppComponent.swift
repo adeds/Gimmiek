@@ -18,7 +18,7 @@ struct AppComponent: Cleanse.RootComponent {
     }
 
     static func configureRoot(binder bind: ReceiptBinder<PropertyInjector<GimmiekApp>>) -> BindingReceipt<PropertyInjector<GimmiekApp>> {
-        bind.propertyInjector { (bind) -> BindingReceipt<PropertyInjector<AdoptmeApp>> in
+        bind.propertyInjector { (bind) -> BindingReceipt<PropertyInjector<GimmiekApp>> in
             return bind.to(injector: GimmiekApp.injectProperties)
         }
     }
