@@ -20,8 +20,7 @@ class GameListViewModel : ObservableObject {
     private var page = 1
     private var keyword = ""
     
-    init(interactor: GameInteractorProtocol, games: [GameUiModel] = [GameUiModel]()) {
-        self.games = games
+    init(interactor: GameInteractorProtocol) {
         self.interactor = interactor
         self.searchGame(keyword: keyword)
     }

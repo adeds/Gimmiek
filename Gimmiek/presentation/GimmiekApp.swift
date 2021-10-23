@@ -11,16 +11,21 @@ import Cleanse
 @main
 class GimmiekApp: App {
     var networker : NetworkerProtocol!
-    var interactor: GameInteractorProtocol!
     var repository: GameRepositoryProtocol!
+    var interactor: GameInteractorProtocol!
     var viewModel : GameListViewModel!
     
     required init() {
-        let propertyInjector = try? ComponentFactory.of(AppComponent.self).build(())
-        propertyInjector?.injectProperties(into: self)
+        do {
+            let propertyInjector = try ComponentFactory.of(AppComponent.self).build(())
+            propertyInjector.injectProperties(into: self)
+        } catch {
+            print("failed inject \(error)")
+        }
+        
         precondition(networker != nil)
-        precondition(interactor != nil)
         precondition(repository != nil)
+        precondition(interactor != nil)
         precondition(viewModel != nil)
     }
     var body: some Scene {

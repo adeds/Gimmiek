@@ -18,7 +18,7 @@ final class GameRepository : GameRepositoryProtocol {
     
     let networker: NetworkerProtocol
     
-    init(networker: NetworkerProtocol = Networker()) {
+    init(networker: NetworkerProtocol) {
         self.networker = networker
     }
     

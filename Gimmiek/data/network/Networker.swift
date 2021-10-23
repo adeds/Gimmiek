@@ -50,7 +50,7 @@ class Networker: NetworkerProtocol {
 extension Networker {
     struct Module: Cleanse.Module {
         static func configure(binder: Binder<Unscoped>) {
-            binder.bind(NetworkerProtocol.self).to{
+            binder.bind(NetworkerProtocol.self).to {
                 Networker()
             }
         }
