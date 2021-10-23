@@ -29,6 +29,8 @@
 		D0BDA2AA26C84161005E0382 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA2A926C84161005E0382 /* EmptyStateView.swift */; };
 		D0C36A3326D5463200D647FB /* AccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36A3226D5463200D647FB /* AccountUseCase.swift */; };
 		D0C36A3526D549EF00D647FB /* GameFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36A3426D549EF00D647FB /* GameFavoritesView.swift */; };
+		D0DFCE3B2724A60400514BFD /* Cleanse in Frameworks */ = {isa = PBXBuildFile; productRef = D0DFCE3A2724A60400514BFD /* Cleanse */; };
+		D0DFCE3E2724A74800514BFD /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCE3D2724A74800514BFD /* AppComponent.swift */; };
 		D0EE6C6B26D00342001286FD /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D0EE6C6A26D00342001286FD /* SDWebImageSwiftUI */; };
 		D0F97A8E26CEC2C4003E5A32 /* game.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0F97A8C26CEC2C4003E5A32 /* game.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -58,6 +60,7 @@
 		D0BDA2A926C84161005E0382 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		D0C36A3226D5463200D647FB /* AccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUseCase.swift; sourceTree = "<group>"; };
 		D0C36A3426D549EF00D647FB /* GameFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFavoritesView.swift; sourceTree = "<group>"; };
+		D0DFCE3D2724A74800514BFD /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		D0F97A8D26CEC2C4003E5A32 /* game.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = game.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0DFCE3B2724A60400514BFD /* Cleanse in Frameworks */,
 				D0EE6C6B26D00342001286FD /* SDWebImageSwiftUI in Frameworks */,
 				D01272DB272135C000AF5D91 /* Alamofire in Frameworks */,
 			);
@@ -153,6 +157,7 @@
 		D0BDA26D26C80E92005E0382 /* Gimmiek */ = {
 			isa = PBXGroup;
 			children = (
+				D0DFCE3C2724A73D00514BFD /* di */,
 				D0BDA28026C80EF0005E0382 /* data */,
 				D0BDA27E26C80EE7005E0382 /* presentation */,
 				D0BDA28626C8263B005E0382 /* domain */,
@@ -240,6 +245,14 @@
 			path = custom;
 			sourceTree = "<group>";
 		};
+		D0DFCE3C2724A73D00514BFD /* di */ = {
+			isa = PBXGroup;
+			children = (
+				D0DFCE3D2724A74800514BFD /* AppComponent.swift */,
+			);
+			path = di;
+			sourceTree = "<group>";
+		};
 		D0F97A8B26CEC2AD003E5A32 /* coredata */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +282,7 @@
 			packageProductDependencies = (
 				D0EE6C6A26D00342001286FD /* SDWebImageSwiftUI */,
 				D01272DA272135C000AF5D91 /* Alamofire */,
+				D0DFCE3A2724A60400514BFD /* Cleanse */,
 			);
 			productName = Gimmiek;
 			productReference = D0BDA26B26C80E92005E0382 /* Gimmiek.app */;
@@ -300,6 +314,7 @@
 			packageReferences = (
 				D0EE6C6926D00342001286FD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				D01272D9272135C000AF5D91 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D0DFCE392724A60400514BFD /* XCRemoteSwiftPackageReference "Cleanse" */,
 			);
 			productRefGroup = D0BDA26C26C80E92005E0382 /* Products */;
 			projectDirPath = "";
@@ -349,6 +364,7 @@
 			files = (
 				D0BDA27126C80E92005E0382 /* ContentView.swift in Sources */,
 				D0BDA28F26C828CC005E0382 /* GameListView.swift in Sources */,
+				D0DFCE3E2724A74800514BFD /* AppComponent.swift in Sources */,
 				D0BDA2A626C83BD0005E0382 /* Blur.swift in Sources */,
 				D0380CF926D3C7140020401E /* GameDataProvider.swift in Sources */,
 				D0BDA28B26C826B5005E0382 /* GameUiModel.swift in Sources */,
@@ -565,6 +581,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D0DFCE392724A60400514BFD /* XCRemoteSwiftPackageReference "Cleanse" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/square/Cleanse";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		D0EE6C6926D00342001286FD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -580,6 +604,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D01272D9272135C000AF5D91 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D0DFCE3A2724A60400514BFD /* Cleanse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0DFCE392724A60400514BFD /* XCRemoteSwiftPackageReference "Cleanse" */;
+			productName = Cleanse;
 		};
 		D0EE6C6A26D00342001286FD /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -13,8 +13,8 @@ struct GameListView: View {
     @ObservedObject var viewModel: GameListViewModel
     @State var input: String = ""
     
-    init(repository: GameRepositoryProtocol) {
-        self.viewModel = GameListViewModel(interactor: GameInteractor(repository: repository))
+    init(viewModel: GameListViewModel) {
+        self.viewModel = viewModel
     }
     
     var body: some View {

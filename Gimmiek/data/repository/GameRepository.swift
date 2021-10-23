@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Cleanse
 
 protocol GameRepositoryProtocol {
 
@@ -28,5 +29,14 @@ final class GameRepository : GameRepositoryProtocol {
         return networker.get(type: Game.self,
                              url: endpoint.url,
                              headers: endpoint.headers)
+    }
+}
+
+
+extension GameRepository {
+    struct Module: Cleanse.Module {
+        static func configure(binder: Binder<Unscoped>) {
+            binder.bind(GameRepositoryProtocol.self).to(factory: GameRepository.init)
+        }
     }
 }

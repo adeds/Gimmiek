@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Cleanse
 
 protocol GameInteractorProtocol {
     var repository: GameRepositoryProtocol { get }
@@ -45,4 +46,12 @@ class GameInteractor: GameInteractorProtocol {
             self.prevList.append(contentsOf: gameUiModel)
             return self.prevList
         }.eraseToAnyPublisher()}
+}
+
+extension GameInteractor {
+    struct Module: Cleanse.Module {
+        static func configure(binder: Binder<Unscoped>) {
+            binder.bind(GameInteractorProtocol.self).to(factory: GameInteractor.init)
+        }
+    }
 }

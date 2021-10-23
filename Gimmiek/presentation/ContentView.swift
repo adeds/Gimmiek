@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @EnvironmentObject private var viewModel: GameListViewModel
+    
     var body: some View {
-        let repository : GameRepositoryProtocol = GameRepository()
-        GameListView(repository: repository)
+        GameListView(viewModel: viewModel)
     }
 }
