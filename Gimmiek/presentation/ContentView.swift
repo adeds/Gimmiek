@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var games = GameUseCase()
     
     var body: some View {
-        GameListView(games: games)
+        let repository : GameRepositoryProtocol = GameRepository()
+        GameListView(repository: repository)
     }
 }

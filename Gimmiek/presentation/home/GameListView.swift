@@ -10,8 +10,12 @@ import SDWebImageSwiftUI
 
 struct GameListView: View {
     
-    @ObservedObject var games: GameUseCase
+    @ObservedObject var viewModel: GameListViewModel
     @State var input: String = ""
+    
+    init(repository: GameRepositoryProtocol) {
+        self.viewModel = GameListViewModel(interactor: GameInteractor(repository: repository))
+    }
     
     var body: some View {
         NavigationView {
@@ -34,7 +38,7 @@ struct GameListView: View {
                                   text: $input,
                                   onEditingChanged: {_ in },
                                   onCommit: {
-                                    self.games.searchGame(keyword: input)
+                                    self.viewModel.searchGame(keyword: input)
                                   })
                             .keyboardType(.webSearch)
                             .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5))
@@ -44,14 +48,14 @@ struct GameListView: View {
                         
                     }.listRowBackground(SwiftUI.Color.clear)
                     
-                    ForEach(games.games, id: \.uuid) { (game: GameUiModel) in
+                    ForEach(viewModel.games, id: \.uuid) { (game: GameUiModel) in
                         NavigationLink(
                             destination: GameDetailView(game: game)
                                 .navigationBarTitle(game.name)) {
                             GameItemView(game: game)
                         }
                         .onDisappear {
-                            games.loadMore(game: game)
+                            viewModel.loadMore(game: game)
                         }
                         .padding(EdgeInsets(top: 150, leading: 0, bottom: 0, trailing: 0))
                         .background(
@@ -78,7 +82,7 @@ struct GameListView: View {
                 .navigationBarTitle("Gimmiek")
                 
                 VStack {
-                    EmptyStateView(isLoading: games.isLoading, showEmptyState: games.games.isEmpty)
+                    EmptyStateView(isLoading: viewModel.isLoading, showEmptyState: viewModel.games.isEmpty)
                         .frame(
                             minWidth: 100,
                             idealWidth: 300,

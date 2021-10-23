@@ -9,15 +9,16 @@ import Foundation
 
 struct Constant {
     static let rawrgApiKey = "your apikey"
-    static var rawgBaseUrl = "https://api.rawg.io/api/"
+    static let rawgBaseUrl = "api.rawg.io"
     
     struct Path {
-        static let games = "games?"
+        static let api = "/api"
+        static let games = "/games"
     }
     struct QueryName {
-        static let key = "&key="
-        static let page = "&page="
-        static let search = "&search="
+        static let key = "key"
+        static let page = "page"
+        static let search = "search"
     }
     
     struct CoreData {

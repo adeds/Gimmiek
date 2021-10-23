@@ -10,6 +10,10 @@
 		D01272D127212B5700AF5D91 /* GameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01272D027212B5700AF5D91 /* GameRepository.swift */; };
 		D01272D627212C6700AF5D91 /* GameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01272D527212C6700AF5D91 /* GameInteractor.swift */; };
 		D01272DB272135C000AF5D91 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D01272DA272135C000AF5D91 /* Alamofire */; };
+		D0246C302724554000D319F2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0246C2F2724554000D319F2 /* NetworkError.swift */; };
+		D0246C322724556600D319F2 /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0246C312724556600D319F2 /* Networker.swift */; };
+		D0246C342724565900D319F2 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0246C332724565900D319F2 /* Endpoint.swift */; };
+		D0246C3727245D7300D319F2 /* GameListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0246C3627245D7300D319F2 /* GameListViewModel.swift */; };
 		D0380CF926D3C7140020401E /* GameDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0380CF826D3C7140020401E /* GameDataProvider.swift */; };
 		D085BC1926C8CE4B00380C64 /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */; };
 		D0BDA26F26C80E92005E0382 /* GimmiekApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */; };
@@ -35,6 +39,10 @@
 		D01272CC27211FE700AF5D91 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D01272D027212B5700AF5D91 /* GameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRepository.swift; sourceTree = "<group>"; };
 		D01272D527212C6700AF5D91 /* GameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInteractor.swift; sourceTree = "<group>"; };
+		D0246C2F2724554000D319F2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		D0246C312724556600D319F2 /* Networker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
+		D0246C332724565900D319F2 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		D0246C3627245D7300D319F2 /* GameListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListViewModel.swift; sourceTree = "<group>"; };
 		D0380CF826D3C7140020401E /* GameDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataProvider.swift; sourceTree = "<group>"; };
 		D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		D0BDA26B26C80E92005E0382 /* Gimmiek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gimmiek.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +120,25 @@
 			path = game;
 			sourceTree = "<group>";
 		};
+		D0246C2E2724552500D319F2 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				D0246C2F2724554000D319F2 /* NetworkError.swift */,
+				D0246C312724556600D319F2 /* Networker.swift */,
+				D0246C332724565900D319F2 /* Endpoint.swift */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		D0246C3527245D5F00D319F2 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				D0BDA28E26C828CC005E0382 /* GameListView.swift */,
+				D0246C3627245D7300D319F2 /* GameListViewModel.swift */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
 		D0BDA26226C80E92005E0382 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +180,7 @@
 		D0BDA27E26C80EE7005E0382 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D0246C3527245D5F00D319F2 /* home */,
 				D01272D227212BB700AF5D91 /* itemList */,
 				D0BDA2A426C83BBE005E0382 /* custom */,
 				D0BDA29E26C83B59005E0382 /* detail */,
@@ -166,6 +194,7 @@
 		D0BDA28026C80EF0005E0382 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				D0246C2E2724552500D319F2 /* network */,
 				D01272CF27212B2F00AF5D91 /* repository */,
 				D0BDA29626C82DAB005E0382 /* util */,
 				D0F97A8B26CEC2AD003E5A32 /* coredata */,
@@ -186,7 +215,6 @@
 		D0BDA29126C828EB005E0382 /* game */ = {
 			isa = PBXGroup;
 			children = (
-				D0BDA28E26C828CC005E0382 /* GameListView.swift */,
 				D0C36A3426D549EF00D647FB /* GameFavoritesView.swift */,
 			);
 			path = game;
@@ -332,17 +360,21 @@
 				D0BDA28B26C826B5005E0382 /* GameUiModel.swift in Sources */,
 				D0BDA29826C82DBA005E0382 /* Constant.swift in Sources */,
 				D0F97A8E26CEC2C4003E5A32 /* game.xcdatamodeld in Sources */,
+				D0246C342724565900D319F2 /* Endpoint.swift in Sources */,
 				D0BDA29426C828FB005E0382 /* GameItemView.swift in Sources */,
 				D01272D127212B5700AF5D91 /* GameRepository.swift in Sources */,
 				D0C36A3326D5463200D647FB /* AccountUseCase.swift in Sources */,
 				D0BDA28226C80F52005E0382 /* Game.swift in Sources */,
 				D0C36A3526D549EF00D647FB /* GameFavoritesView.swift in Sources */,
 				D01272D627212C6700AF5D91 /* GameInteractor.swift in Sources */,
+				D0246C3727245D7300D319F2 /* GameListViewModel.swift in Sources */,
 				D0BDA26F26C80E92005E0382 /* GimmiekApp.swift in Sources */,
 				D0BDA2A026C83B72005E0382 /* GameDetailView.swift in Sources */,
+				D0246C322724556600D319F2 /* Networker.swift in Sources */,
 				D085BC1926C8CE4B00380C64 /* AccountDetailView.swift in Sources */,
 				D0BDA28826C82660005E0382 /* GameUseCase.swift in Sources */,
 				D0BDA2AA26C84161005E0382 /* EmptyStateView.swift in Sources */,
+				D0246C302724554000D319F2 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

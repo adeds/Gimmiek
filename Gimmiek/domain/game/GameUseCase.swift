@@ -20,7 +20,7 @@ class GameUseCase: ObservableObject {
     
     private var currentUrl = ""
     
-    let gameListUrl = Constant.rawgBaseUrl
+    let gameListUrl = Constant.rawgBaseUrl + Constant.Path.api
     + Constant.Path.games
     + Constant.QueryName.key + Constant.rawrgApiKey
     
@@ -51,6 +51,7 @@ class GameUseCase: ObservableObject {
     
     func fetchGameList(url: String, isAppend: Bool = true) {
         // todo : move to repository
+        isLoading = true
         
         AF.request(url).responseDecodable(of: Game.self) { response in
             if response.error != nil {
