@@ -9,9 +9,7 @@ import Foundation
 import Combine
 
 protocol GameInteractorProtocol {
-    
     var repository: GameRepositoryProtocol { get }
-    
     func loadMore(page:Int, keyword:String) -> AnyPublisher<[GameUiModel], Error>
 }
 
@@ -20,14 +18,31 @@ class GameInteractor: GameInteractorProtocol {
     let repository: GameRepositoryProtocol
     let networker: NetworkerProtocol = Networker()
     
+    private var isLastPage = false
+    private var keyword = ""
+    private var prevList : [GameUiModel] = [GameUiModel]()
+    
     init(repository: GameRepositoryProtocol) {
         self.repository = repository
     }
     
     func loadMore(page: Int, keyword:String) -> AnyPublisher<[GameUiModel], Error> {
         let result = repository.loadMore(page: page, keyword:keyword)
-        
+        if isLastPage {
+            let noFetch = Just(prevList)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+            return noFetch
+        }
         return result.map { game in
-            game.toGameUiModel()
+            let gameUiModel = game.toGameUiModel()
+            let isNewKeyword = self.keyword != keyword
+            self.isLastPage = gameUiModel.isEmpty && !isNewKeyword
+            self.keyword = keyword
+            if isNewKeyword {
+                self.prevList.removeAll()
+            }
+            self.prevList.append(contentsOf: gameUiModel)
+            return self.prevList
         }.eraseToAnyPublisher()}
 }
