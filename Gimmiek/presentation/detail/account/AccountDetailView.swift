@@ -10,6 +10,8 @@ import SwiftUI
 struct AccountDetailView: View {
     @ObservedObject var viewModel: AccountViewModel
     
+    let router: RouterProtocol
+    
     @State var input: String = ""
     
     var body: some View {
@@ -48,7 +50,7 @@ struct AccountDetailView: View {
             Button(action: {
                 
             }, label: {
-                NavigationLink(destination: GameFavoritesView()
+                NavigationLink(destination: router.toGameFavorites()
                                 .navigationBarTitle("Favorites")) {
                     Text("My Favorites")
                         .frame(

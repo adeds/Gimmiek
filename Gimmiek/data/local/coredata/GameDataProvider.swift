@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import Cleanse
 
 class GameDataProvider {
     static let shared = GameDataProvider()
@@ -196,6 +197,16 @@ class GameDataProvider {
         } catch let error as NSError {
             print(error)
             return [String]()
+        }
+    }
+}
+
+extension GameDataProvider {
+    struct Module: Cleanse.Module {
+        static func configure(binder: Binder<Unscoped>) {
+            binder.bind(GameDataProvider.self).to {
+                GameDataProvider()
+            }
         }
     }
 }

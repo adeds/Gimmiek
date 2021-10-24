@@ -10,15 +10,30 @@ import Cleanse
 
 protocol RouterProtocol {
     func toAccountDetail() -> AccountDetailView
+    func toGameDetail(game: GameUiModel) -> GameDetailView
+    func toGameFavorites() -> GameFavoritesView
 }
 
 class Router: RouterProtocol {
     let accountViewModel: AccountViewModel
-    init(accountViewModel:AccountViewModel) {
+    let gameDetailViewModel: GameDetailViewModel
+    let provider: GameDataProvider
+    
+    init(accountViewModel:AccountViewModel, gameDetailViewModel: GameDetailViewModel, provider: GameDataProvider) {
         self.accountViewModel = accountViewModel
+        self.gameDetailViewModel = gameDetailViewModel
+        self.provider = provider
     }
     func toAccountDetail() -> AccountDetailView {
-        return AccountDetailView(viewModel: accountViewModel)
+        return AccountDetailView(viewModel: accountViewModel, router: self)
+    }
+    
+    func toGameDetail(game: GameUiModel) -> GameDetailView {
+        return GameDetailView.init(game: game, viewModel: gameDetailViewModel)
+    }
+    
+    func toGameFavorites() -> GameFavoritesView {
+        return GameFavoritesView(provider: provider, router: self)
     }
 }
 

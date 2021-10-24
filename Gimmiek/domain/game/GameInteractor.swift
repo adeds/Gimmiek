@@ -16,7 +16,6 @@ protocol GameInteractorProtocol {
 class GameInteractor: GameInteractorProtocol {
     
     let repository: GameRepositoryProtocol
-    let networker: NetworkerProtocol = Networker()
     
     private var isLastPage = false
     private var keyword = ""

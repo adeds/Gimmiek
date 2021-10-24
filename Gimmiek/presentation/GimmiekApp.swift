@@ -20,6 +20,10 @@ class GimmiekApp: App {
     var accountInteractor: AccountInteractorProtocol!
     var accountViewModel: AccountViewModel!
     
+    var gameDataProvider: GameDataProvider!
+    var gameDetailInteractor: GameDetailInteractorProtocol!
+    var gameDetailViewModel: GameDetailViewModel!
+    
     var router: RouterProtocol!
     
     required init() {
@@ -38,6 +42,9 @@ class GimmiekApp: App {
         precondition(accountRepository != nil)
         precondition(accountInteractor != nil)
         precondition(accountViewModel != nil)
+        precondition(gameDataProvider != nil)
+        precondition(gameDetailInteractor != nil)
+        precondition(gameDetailViewModel != nil)
         precondition(router != nil)
     }
     var body: some Scene {
@@ -59,6 +66,10 @@ extension GimmiekApp {
         _ accountInteractor: AccountInteractorProtocol,
         _ accountViewModel: AccountViewModel,
         
+        _ gameDataProvider: GameDataProvider,
+        _ gameDetailInteractor: GameDetailInteractorProtocol,
+        _ gameDetailViewModel: GameDetailViewModel,
+        
         _ router: RouterProtocol
     ) {
         self.networker = networker
@@ -70,6 +81,10 @@ extension GimmiekApp {
         self.accountRepository = accountRepository
         self.accountInteractor = accountInteractor
         self.accountViewModel = accountViewModel
+        
+        self.gameDataProvider = gameDataProvider
+        self.gameDetailInteractor = gameDetailInteractor
+        self.gameDetailViewModel = gameDetailViewModel
         
         self.router = router
     }

@@ -10,7 +10,8 @@ import SDWebImageSwiftUI
 
 struct GameFavoritesView: View {
     @State var games = [GameUiModel]()
-    var provider: GameDataProvider = { return GameDataProvider() }()
+    var provider: GameDataProvider
+    let router: RouterProtocol
     
     fileprivate func loadFav() {
         provider.getAllFavorites { list in
@@ -24,7 +25,7 @@ struct GameFavoritesView: View {
             List {
                 ForEach(games, id: \.uuid) { (game: GameUiModel) in
                     NavigationLink(
-                        destination: GameDetailView(game: game)
+                        destination: router.toGameDetail(game: game)
                             .navigationBarTitle(game.name)) {
                         GameItemView(game: game)
                     }

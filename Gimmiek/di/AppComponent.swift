@@ -11,10 +11,16 @@ struct AppComponent: Cleanse.RootComponent {
     typealias Root = PropertyInjector<GimmiekApp>
 
     static func configure(binder: Binder<Singleton>) {
+        binder.include(module: GameDataProvider.Module.self)
+        
         binder.include(module: Networker.Module.self)
         binder.include(module: GameRepository.Module.self)
+        
         binder.include(module: GameInteractor.Module.self)
         binder.include(module: GameListViewModel.Module.self)
+        
+        binder.include(module: GameDetailInteractor.Module.self)
+        binder.include(module: GameDetailViewModel.Module.self)
         
         binder.include(module: UserDataProvider.Module.self)
         binder.include(module: AccountRepository.Module.self)

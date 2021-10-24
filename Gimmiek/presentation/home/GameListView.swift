@@ -52,7 +52,7 @@ struct GameListView: View {
                     
                     ForEach(viewModel.games, id: \.uuid) { (game: GameUiModel) in
                         NavigationLink(
-                            destination: GameDetailView(game: game)
+                            destination: router.toGameDetail(game: game)
                                 .navigationBarTitle(game.name)) {
                             GameItemView(game: game)
                         }
