@@ -20,6 +20,8 @@ struct AppComponent: Cleanse.RootComponent {
         binder.include(module: AccountRepository.Module.self)
         binder.include(module: AccountInteractor.Module.self)
         binder.include(module: AccountViewModel.Module.self)
+        
+        binder.include(module: Router.Module.self)
     }
 
     static func configureRoot(binder bind: ReceiptBinder<PropertyInjector<GimmiekApp>>) -> BindingReceipt<PropertyInjector<GimmiekApp>> {

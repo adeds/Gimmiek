@@ -33,6 +33,7 @@
 		D0C430652725A2F5004B0889 /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C430642725A2F5004B0889 /* AccountInteractor.swift */; };
 		D0C430672725A381004B0889 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C430662725A381004B0889 /* AccountRepository.swift */; };
 		D0C4306B2725A447004B0889 /* UserDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4306A2725A447004B0889 /* UserDataProvider.swift */; };
+		D0C4306F2725B66F004B0889 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4306E2725B66F004B0889 /* Router.swift */; };
 		D0DFCE3B2724A60400514BFD /* Cleanse in Frameworks */ = {isa = PBXBuildFile; productRef = D0DFCE3A2724A60400514BFD /* Cleanse */; };
 		D0DFCE3E2724A74800514BFD /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCE3D2724A74800514BFD /* AppComponent.swift */; };
 		D0EE6C6B26D00342001286FD /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D0EE6C6A26D00342001286FD /* SDWebImageSwiftUI */; };
@@ -68,6 +69,7 @@
 		D0C430642725A2F5004B0889 /* AccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInteractor.swift; sourceTree = "<group>"; };
 		D0C430662725A381004B0889 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		D0C4306A2725A447004B0889 /* UserDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProvider.swift; sourceTree = "<group>"; };
+		D0C4306E2725B66F004B0889 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D0DFCE3D2724A74800514BFD /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		D0F97A8D26CEC2C4003E5A32 /* game.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = game.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +198,7 @@
 				D0BDA29126C828EB005E0382 /* favorite */,
 				D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */,
 				D0BDA27026C80E92005E0382 /* ContentView.swift */,
+				D0C4306E2725B66F004B0889 /* Router.swift */,
 			);
 			path = presentation;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				D0C36A3526D549EF00D647FB /* GameFavoritesView.swift in Sources */,
 				D0C4306B2725A447004B0889 /* UserDataProvider.swift in Sources */,
 				D0C430672725A381004B0889 /* AccountRepository.swift in Sources */,
+				D0C4306F2725B66F004B0889 /* Router.swift in Sources */,
 				D01272D627212C6700AF5D91 /* GameInteractor.swift in Sources */,
 				D0246C3727245D7300D319F2 /* GameListViewModel.swift in Sources */,
 				D0C430632725A2A0004B0889 /* AccountViewModel.swift in Sources */,

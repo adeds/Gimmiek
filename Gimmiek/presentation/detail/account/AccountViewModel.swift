@@ -21,7 +21,7 @@ class AccountViewModel: ObservableObject {
         getName()
     }
     
-    func getName(){
+    func getName() {
         interactor.getName()
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -35,7 +35,7 @@ class AccountViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
     
-    func setName(name:String){
+    func setName(name:String) {
         interactor.setName(name: name)
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -49,7 +49,6 @@ class AccountViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
 }
-
 
 extension AccountViewModel {
     struct Module: Cleanse.Module {

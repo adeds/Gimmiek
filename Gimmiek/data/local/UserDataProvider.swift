@@ -15,17 +15,13 @@ protocol UserDataProviderProtocol {
 }
 
 class UserDataProvider : UserDataProviderProtocol {
-    private var userData: UserDefaults
-    init(){
-        userData = UserDefaults.standard
-    }
     func getName() -> AnyPublisher<String, Error> {
-        let name = userData.object(forKey: Constant.UserDefault.name) as? String ?? "Adetya Dyas Saputra"
+        let name = UserDefaults.standard.object(forKey: Constant.UserDefault.name) as? String ?? "Adetya Dyas Saputra"
         return Just(name).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
     
     func setName(name:String) -> AnyPublisher<String, Error> {
-        userData.set(name, forKey: Constant.UserDefault.name)
+        UserDefaults.standard.set(name, forKey: Constant.UserDefault.name)
         return getName()
     }
 }
@@ -33,7 +29,7 @@ class UserDataProvider : UserDataProviderProtocol {
 extension UserDataProvider {
     struct Module: Cleanse.Module {
         static func configure(binder: Binder<Unscoped>) {
-            binder.bind(UserDataProviderProtocol.self).to{
+            binder.bind(UserDataProviderProtocol.self).to {
                 UserDataProvider.init()
             }
         }

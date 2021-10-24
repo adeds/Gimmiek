@@ -12,9 +12,11 @@ struct GameListView: View {
     
     @ObservedObject var viewModel: GameListViewModel
     @State var input: String = ""
+    let router: RouterProtocol
     
-    init(viewModel: GameListViewModel) {
+    init(viewModel: GameListViewModel, router: RouterProtocol) {
         self.viewModel = viewModel
+        self.router = router
     }
     
     var body: some View {
@@ -29,7 +31,7 @@ struct GameListView: View {
                                 .cornerRadius(10)
                             
                             NavigationLink(
-                                destination: AccountDetailView()) {
+                                destination: router.toAccountDetail()) {
                                 EmptyView()
                             }
                         }.aspectRatio(contentMode: .fit)
