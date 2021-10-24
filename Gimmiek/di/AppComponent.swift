@@ -15,6 +15,11 @@ struct AppComponent: Cleanse.RootComponent {
         binder.include(module: GameRepository.Module.self)
         binder.include(module: GameInteractor.Module.self)
         binder.include(module: GameListViewModel.Module.self)
+        
+        binder.include(module: UserDataProvider.Module.self)
+        binder.include(module: AccountRepository.Module.self)
+        binder.include(module: AccountInteractor.Module.self)
+        binder.include(module: AccountViewModel.Module.self)
     }
 
     static func configureRoot(binder bind: ReceiptBinder<PropertyInjector<GimmiekApp>>) -> BindingReceipt<PropertyInjector<GimmiekApp>> {

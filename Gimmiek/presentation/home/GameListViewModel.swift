@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import Alamofire
 import Cleanse
 
 class GameListViewModel : ObservableObject {

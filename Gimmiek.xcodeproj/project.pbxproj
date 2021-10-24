@@ -29,6 +29,10 @@
 		D0BDA2AA26C84161005E0382 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA2A926C84161005E0382 /* EmptyStateView.swift */; };
 		D0C36A3326D5463200D647FB /* AccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36A3226D5463200D647FB /* AccountUseCase.swift */; };
 		D0C36A3526D549EF00D647FB /* GameFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36A3426D549EF00D647FB /* GameFavoritesView.swift */; };
+		D0C430632725A2A0004B0889 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C430622725A2A0004B0889 /* AccountViewModel.swift */; };
+		D0C430652725A2F5004B0889 /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C430642725A2F5004B0889 /* AccountInteractor.swift */; };
+		D0C430672725A381004B0889 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C430662725A381004B0889 /* AccountRepository.swift */; };
+		D0C4306B2725A447004B0889 /* UserDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4306A2725A447004B0889 /* UserDataProvider.swift */; };
 		D0DFCE3B2724A60400514BFD /* Cleanse in Frameworks */ = {isa = PBXBuildFile; productRef = D0DFCE3A2724A60400514BFD /* Cleanse */; };
 		D0DFCE3E2724A74800514BFD /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCE3D2724A74800514BFD /* AppComponent.swift */; };
 		D0EE6C6B26D00342001286FD /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D0EE6C6A26D00342001286FD /* SDWebImageSwiftUI */; };
@@ -60,6 +64,10 @@
 		D0BDA2A926C84161005E0382 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		D0C36A3226D5463200D647FB /* AccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUseCase.swift; sourceTree = "<group>"; };
 		D0C36A3426D549EF00D647FB /* GameFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFavoritesView.swift; sourceTree = "<group>"; };
+		D0C430622725A2A0004B0889 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		D0C430642725A2F5004B0889 /* AccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInteractor.swift; sourceTree = "<group>"; };
+		D0C430662725A381004B0889 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
+		D0C4306A2725A447004B0889 /* UserDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProvider.swift; sourceTree = "<group>"; };
 		D0DFCE3D2724A74800514BFD /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		D0F97A8D26CEC2C4003E5A32 /* game.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = game.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				D01272D027212B5700AF5D91 /* GameRepository.swift */,
+				D0C430662725A381004B0889 /* AccountRepository.swift */,
 			);
 			path = repository;
 			sourceTree = "<group>";
@@ -107,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				D0C36A3226D5463200D647FB /* AccountUseCase.swift */,
+				D0C430642725A2F5004B0889 /* AccountInteractor.swift */,
 			);
 			path = account;
 			sourceTree = "<group>";
@@ -183,7 +193,7 @@
 				D01272D227212BB700AF5D91 /* itemList */,
 				D0BDA2A426C83BBE005E0382 /* custom */,
 				D0BDA29E26C83B59005E0382 /* detail */,
-				D0BDA29126C828EB005E0382 /* game */,
+				D0BDA29126C828EB005E0382 /* favorite */,
 				D0BDA26E26C80E92005E0382 /* GimmiekApp.swift */,
 				D0BDA27026C80E92005E0382 /* ContentView.swift */,
 			);
@@ -193,10 +203,9 @@
 		D0BDA28026C80EF0005E0382 /* data */ = {
 			isa = PBXGroup;
 			children = (
-				D0246C2E2724552500D319F2 /* network */,
+				D0C430692725A424004B0889 /* local */,
+				D0C430682725A406004B0889 /* remote */,
 				D01272CF27212B2F00AF5D91 /* repository */,
-				D0BDA29626C82DAB005E0382 /* util */,
-				D0F97A8B26CEC2AD003E5A32 /* coredata */,
 				D01272CE272127F000AF5D91 /* model */,
 			);
 			path = data;
@@ -211,12 +220,12 @@
 			path = domain;
 			sourceTree = "<group>";
 		};
-		D0BDA29126C828EB005E0382 /* game */ = {
+		D0BDA29126C828EB005E0382 /* favorite */ = {
 			isa = PBXGroup;
 			children = (
 				D0C36A3426D549EF00D647FB /* GameFavoritesView.swift */,
 			);
-			path = game;
+			path = favorite;
 			sourceTree = "<group>";
 		};
 		D0BDA29626C82DAB005E0382 /* util */ = {
@@ -231,7 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				D0BDA29F26C83B72005E0382 /* GameDetailView.swift */,
-				D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */,
+				D0C430612725A28E004B0889 /* account */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -243,6 +252,33 @@
 				D0BDA2A926C84161005E0382 /* EmptyStateView.swift */,
 			);
 			path = custom;
+			sourceTree = "<group>";
+		};
+		D0C430612725A28E004B0889 /* account */ = {
+			isa = PBXGroup;
+			children = (
+				D085BC1826C8CE4B00380C64 /* AccountDetailView.swift */,
+				D0C430622725A2A0004B0889 /* AccountViewModel.swift */,
+			);
+			path = account;
+			sourceTree = "<group>";
+		};
+		D0C430682725A406004B0889 /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				D0BDA29626C82DAB005E0382 /* util */,
+				D0246C2E2724552500D319F2 /* network */,
+			);
+			path = remote;
+			sourceTree = "<group>";
+		};
+		D0C430692725A424004B0889 /* local */ = {
+			isa = PBXGroup;
+			children = (
+				D0F97A8B26CEC2AD003E5A32 /* coredata */,
+				D0C4306A2725A447004B0889 /* UserDataProvider.swift */,
+			);
+			path = local;
 			sourceTree = "<group>";
 		};
 		D0DFCE3C2724A73D00514BFD /* di */ = {
@@ -374,10 +410,14 @@
 				D0BDA29426C828FB005E0382 /* GameItemView.swift in Sources */,
 				D01272D127212B5700AF5D91 /* GameRepository.swift in Sources */,
 				D0C36A3326D5463200D647FB /* AccountUseCase.swift in Sources */,
+				D0C430652725A2F5004B0889 /* AccountInteractor.swift in Sources */,
 				D0BDA28226C80F52005E0382 /* Game.swift in Sources */,
 				D0C36A3526D549EF00D647FB /* GameFavoritesView.swift in Sources */,
+				D0C4306B2725A447004B0889 /* UserDataProvider.swift in Sources */,
+				D0C430672725A381004B0889 /* AccountRepository.swift in Sources */,
 				D01272D627212C6700AF5D91 /* GameInteractor.swift in Sources */,
 				D0246C3727245D7300D319F2 /* GameListViewModel.swift in Sources */,
+				D0C430632725A2A0004B0889 /* AccountViewModel.swift in Sources */,
 				D0BDA26F26C80E92005E0382 /* GimmiekApp.swift in Sources */,
 				D0BDA2A026C83B72005E0382 /* GameDetailView.swift in Sources */,
 				D0246C322724556600D319F2 /* Networker.swift in Sources */,
