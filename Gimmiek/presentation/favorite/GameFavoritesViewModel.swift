@@ -11,7 +11,7 @@ import Cleanse
 
 class GameFavoritesViewModel: ObservableObject {
     
-    @Published var gamesFavorites: [GameUiModel] = [GameUiModel]()
+    @Published var gamesFavorites = [GameUiModel]()
     
     private var interactor: GameFavoritesInteractorProtocol
     private var cancellables = Set<AnyCancellable>()
@@ -21,16 +21,31 @@ class GameFavoritesViewModel: ObservableObject {
     }
     
     func load() {
-        interactor.getAllFavorites { listFavorites in
-            self.gamesFavorites.removeAll()
-            self.gamesFavorites.append(contentsOf: listFavorites)
-        }
+        interactor.getAllFavorites()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    print(error)
+                case .finished: break
+                }
+            } receiveValue: { result in
+                self.gamesFavorites = result
+            }.store(in: &cancellables)
     }
     
     func deleteFavorites(game:GameUiModel) {
-        interactor.deleteFavorites(game) {
-            self.load()
-        }
+        interactor.deleteFavorites(game)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    print(error)
+                case .finished: break
+                }
+            } receiveValue: { _ in
+                self.load()
+            }.store(in: &cancellables)
     }
 }
 
@@ -41,4 +56,3 @@ extension GameFavoritesViewModel {
         }
     }
 }
-

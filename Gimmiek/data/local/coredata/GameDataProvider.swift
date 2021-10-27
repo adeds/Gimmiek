@@ -7,6 +7,7 @@
 
 import CoreData
 import Cleanse
+import Combine
 
 class GameDataProvider {
     static let shared = GameDataProvider()
@@ -50,6 +51,8 @@ class GameDataProvider {
         static let tags = "tags"
     }
     
+    private var cancellables = Set<AnyCancellable>()
+    
     private func newTaskContext() -> NSManagedObjectContext {
         let taskContext = container.newBackgroundContext()
         taskContext.undoManager = nil
@@ -58,120 +61,116 @@ class GameDataProvider {
         return taskContext
     }
     
-    func changeFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void) {
-        checkFavorites(gameUiModel) { isFav in
-            if isFav {
-                self.deleteFavorites(gameUiModel) {
-                    completion()
+    func addFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error> {
+        let taskContext = newTaskContext()
+        
+        return Future({ promise in
+            taskContext.performAndWait {
+                if let entity = NSEntityDescription.entity(forEntityName: Constant.CoreData.gameDataModel, in: taskContext) {
+                    let game = NSManagedObject(entity: entity, insertInto: taskContext)
+                    game.setValue(gameUiModel.backgroundImage, forKeyPath: GameContract.backgroundImage)
+                    game.setValue(gameUiModel.gameId, forKeyPath: GameContract.gameId)
+                    game.setValue(gameUiModel.released, forKeyPath: GameContract.released)
+                    game.setValue(gameUiModel.updated, forKeyPath: GameContract.updated)
+                    game.setValue(self.listToJsonString(list:gameUiModel.genres), forKeyPath: GameContract.genres)
+                    game.setValue(gameUiModel.name, forKeyPath: GameContract.name)
+                    game.setValue(self.listToJsonString(list:gameUiModel.platforms), forKeyPath: GameContract.platforms)
+                    game.setValue(gameUiModel.rating, forKeyPath: GameContract.rating)
+                    game.setValue(gameUiModel.ratingTop, forKeyPath: GameContract.ratingTop)
+                    game.setValue(self.listToJsonString(list:gameUiModel.screenshots), forKeyPath: GameContract.screenshots)
+                    game.setValue(self.listToJsonString(list:gameUiModel.tags), forKeyPath: GameContract.tags)
+                    
+                    do {
+                        try taskContext.save()
+                        promise(.success(nil))
+                    } catch let error as NSError {
+                        print("Could not save. \(error), \(error.userInfo)")
+                    }
                 }
-            } else {
-                self.addFavorites(gameUiModel) {
-                    completion()
-                }
+                
             }
-        }
+        })
     }
     
-    private func addFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void) {
+    func deleteFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error>  {
         let taskContext = newTaskContext()
-        taskContext.performAndWait {
-            if let entity = NSEntityDescription.entity(forEntityName: Constant.CoreData.gameDataModel, in: taskContext) {
-                let game = NSManagedObject(entity: entity, insertInto: taskContext)
-                game.setValue(gameUiModel.backgroundImage, forKeyPath: GameContract.backgroundImage)
-                game.setValue(gameUiModel.gameId, forKeyPath: GameContract.gameId)
-                game.setValue(gameUiModel.released, forKeyPath: GameContract.released)
-                game.setValue(gameUiModel.updated, forKeyPath: GameContract.updated)
-                game.setValue(listToJsonString(list:gameUiModel.genres), forKeyPath: GameContract.genres)
-                game.setValue(gameUiModel.name, forKeyPath: GameContract.name)
-                game.setValue(listToJsonString(list:gameUiModel.platforms), forKeyPath: GameContract.platforms)
-                game.setValue(gameUiModel.rating, forKeyPath: GameContract.rating)
-                game.setValue(gameUiModel.ratingTop, forKeyPath: GameContract.ratingTop)
-                game.setValue(listToJsonString(list:gameUiModel.screenshots), forKeyPath: GameContract.screenshots)
-                game.setValue(listToJsonString(list:gameUiModel.tags), forKeyPath: GameContract.tags)
+        return Future({ promise in
+            taskContext.perform {
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constant.CoreData.gameDataModel)
+                fetchRequest.fetchLimit = 1
+                fetchRequest.predicate = NSPredicate(format: "gameId == \(gameUiModel.gameId ?? 0)")
+                let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                batchDeleteRequest.resultType = .resultTypeCount
+                if let batchDeleteResult = try? taskContext.execute(batchDeleteRequest) as? NSBatchDeleteResult {
+                    if batchDeleteResult.result != nil {
+                        promise(.success(nil))
+                    }
+                }
+            }
+        })
+    }
+    
+    func checkFavorites(_ gameUiModel: GameUiModel) -> Future<Bool, Error> {
+        let taskContext = newTaskContext()
+        
+        return Future({ promise in
+            taskContext.perform {
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constant.CoreData.gameDataModel)
+                fetchRequest.fetchLimit = 1
+                fetchRequest.predicate = NSPredicate(format: "gameId == \(gameUiModel.gameId ?? 0)")
                 
                 do {
-                    try taskContext.save()
-                    completion()
-                } catch let error as NSError {
-                    print("Could not save. \(error), \(error.userInfo)")
-                }
-            }
-            
-        }
-    }
-
-    func deleteFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void) {
-        let taskContext = newTaskContext()
-        taskContext.perform {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constant.CoreData.gameDataModel)
-            fetchRequest.fetchLimit = 1
-            fetchRequest.predicate = NSPredicate(format: "gameId == \(gameUiModel.gameId ?? 0)")
-            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-            batchDeleteRequest.resultType = .resultTypeCount
-            if let batchDeleteResult = try? taskContext.execute(batchDeleteRequest) as? NSBatchDeleteResult {
-                if batchDeleteResult.result != nil {
-                    completion()
-                }
-            }
-        }
-    }
-
-    func checkFavorites(_ gameUiModel: GameUiModel, completion: @escaping(_ isFavorite: Bool) -> Void) {
-        let taskContext = newTaskContext()
-        taskContext.perform {
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constant.CoreData.gameDataModel)
-            fetchRequest.fetchLimit = 1
-            fetchRequest.predicate = NSPredicate(format: "gameId == \(gameUiModel.gameId ?? 0)")
-            
-            do {
-                if let result = try taskContext.fetch(fetchRequest).first {
-                    if let name = result.value(forKey: "name") as? String {
-                        completion(!name.isEmpty)
+                    if let result = try taskContext.fetch(fetchRequest).first {
+                        if let name = result.value(forKey: "name") as? String {
+                            promise(.success(!name.isEmpty))
+                        } else {
+                            promise(.success(false))
+                        }
                     } else {
-                        completion(false)
+                        promise(.success(false))
                     }
-                } else {
-                    completion(false)
+                } catch let error as NSError {
+                    promise(.failure(error))
                 }
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
+                
             }
-            
-        }
+        })
     }
     
-    func getAllFavorites(completion: @escaping(_ listFavorites: [GameUiModel]) -> Void) {
+    func getAllFavorites()  -> Future<[GameUiModel], Error>  {
         let taskContext = newTaskContext()
-        taskContext.perform {
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constant.CoreData.gameDataModel)
-            
-            do {
-                let results = try taskContext.fetch(fetchRequest)
-                var games: [GameUiModel] = []
+        return Future({ promise in
+            taskContext.perform {
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constant.CoreData.gameDataModel)
                 
-                for result in results {
-                    let game = GameUiModel(
-                        gameId: Int(result.value(forKeyPath: GameContract.gameId) as? Int16 ?? 0),
-                        name: result.value(forKeyPath: GameContract.name) as? String ?? " - ",
-                        released: result.value(forKeyPath: GameContract.released) as? String ?? " - ",
-                        updated: result.value(forKeyPath: GameContract.updated) as? String ?? " - ",
-                        backgroundImage: result.value(forKeyPath: GameContract.backgroundImage) as? String ?? " - ",
-                        rating: result.value(forKeyPath: GameContract.gameId) as? Double ?? 0.0,
-                        ratingTop: Int(result.value(forKeyPath: GameContract.ratingTop) as? Int16 ?? 0),
-                        platforms: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.platforms) as? String ?? " - "),
-                        genres: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.genres) as? String ?? " - "),
-                        screenshots: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.screenshots) as? String ?? " - "),
-                        tags: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.tags) as? String ?? " - ")
-                    )
+                do {
+                    let results = try taskContext.fetch(fetchRequest)
+                    var games: [GameUiModel] = []
                     
-                    games.append(game)
+                    for result in results {
+                        let game = GameUiModel(
+                            gameId: Int(result.value(forKeyPath: GameContract.gameId) as? Int16 ?? 0),
+                            name: result.value(forKeyPath: GameContract.name) as? String ?? " - ",
+                            released: result.value(forKeyPath: GameContract.released) as? String ?? " - ",
+                            updated: result.value(forKeyPath: GameContract.updated) as? String ?? " - ",
+                            backgroundImage: result.value(forKeyPath: GameContract.backgroundImage) as? String ?? " - ",
+                            rating: result.value(forKeyPath: GameContract.gameId) as? Double ?? 0.0,
+                            ratingTop: Int(result.value(forKeyPath: GameContract.ratingTop) as? Int16 ?? 0),
+                            platforms: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.platforms) as? String ?? " - "),
+                            genres: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.genres) as? String ?? " - "),
+                            screenshots: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.screenshots) as? String ?? " - "),
+                            tags: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.tags) as? String ?? " - ")
+                        )
+                        
+                        games.append(game)
+                    }
+                    promise(.success(games))
+                } catch let error as NSError {
+                    promise(.failure(error))
                 }
-                completion(games)
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
+                
             }
-            
-        }
+        })
     }
     
     private func listToJsonString(list : [String]) -> String {

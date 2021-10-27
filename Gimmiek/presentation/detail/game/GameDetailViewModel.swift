@@ -27,15 +27,31 @@ class GameDetailViewModel: ObservableObject {
     }
     
     private func checkFavorite() {
-        interactor.checkFavorites(game) { isFavorite in
-            self.isFavorite = isFavorite
-        }
+        interactor.checkFavorites(game)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    print(error)
+                case .finished: break
+                }
+            } receiveValue: { result in
+                self.isFavorite = result
+            }.store(in: &cancellables)
     }
     
     func changeFavorite() {
-        interactor.changeFavorites(game) {
-            self.checkFavorite()
-        }
+        interactor.changeFavorites(game)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    print(error)
+                case .finished: break
+                }
+            } receiveValue: { result in
+                self.isFavorite = result
+            }.store(in: &cancellables)
     }
     
 }

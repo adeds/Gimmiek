@@ -7,29 +7,31 @@
 
 import Foundation
 import Cleanse
+import Combine
 
 protocol GameFavoritesInteractorProtocol {
-    func getAllFavorites(completion: @escaping(_ listFavorites: [GameUiModel]) -> Void)
-    func deleteFavorites(_ gameUiModel: GameUiModel?, completion: @escaping() -> Void)
+    func getAllFavorites() -> AnyPublisher<[GameUiModel], Error>
+    func deleteFavorites(_ gameUiModel: GameUiModel?) -> AnyPublisher<Any?, Error>
 }
 
 class GameFavoritesInteractor : GameFavoritesInteractorProtocol {
-    
+
     let repository: GameRepositoryProtocol
     
     init(repository: GameRepositoryProtocol) {
         self.repository = repository
     }
-    func getAllFavorites(completion: @escaping ([GameUiModel]) -> Void) {
-        return repository.getAllFavorites(completion: completion)
+    
+    func getAllFavorites() -> AnyPublisher<[GameUiModel], Error> {
+        return repository.getAllFavorites().eraseToAnyPublisher()
     }
     
-    func deleteFavorites(_ gameUiModel: GameUiModel?, completion: @escaping () -> Void) {
+    func deleteFavorites(_ gameUiModel: GameUiModel?) -> AnyPublisher<Any?, Error> {
         guard let game = gameUiModel else {
             print("game nil, load game first")
-            return
+            return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
-        repository.deleteFavorites(game, completion: completion)
+        return repository.deleteFavorites(game).eraseToAnyPublisher()
     }
 }
 

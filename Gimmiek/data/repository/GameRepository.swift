@@ -12,10 +12,10 @@ import Cleanse
 protocol GameRepositoryProtocol {
 
     func loadMore(page:Int, keyword: String) -> Future<Game, Error>
-    func changeFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void)
-    func deleteFavorites(_ gameUiModel: GameUiModel, completion: @escaping() -> Void)
-    func checkFavorites(_ gameUiModel: GameUiModel, completion: @escaping(_ isFavorite: Bool) -> Void)
-    func getAllFavorites(completion: @escaping(_ listFavorites: [GameUiModel]) -> Void)
+    func deleteFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error>
+    func addFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error>
+    func checkFavorites(_ gameUiModel: GameUiModel) -> Future<Bool, Error>
+    func getAllFavorites()  -> Future<[GameUiModel], Error>
 }
 
 final class GameRepository : GameRepositoryProtocol {
@@ -36,20 +36,20 @@ final class GameRepository : GameRepositoryProtocol {
                              headers: endpoint.headers)
     }
     
-    func changeFavorites(_ gameUiModel: GameUiModel, completion: @escaping () -> Void) {
-        gameDataProvider.changeFavorites(gameUiModel, completion: completion)
+    func deleteFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error> {
+        return gameDataProvider.deleteFavorites(gameUiModel)
     }
     
-    func deleteFavorites(_ gameUiModel: GameUiModel, completion: @escaping () -> Void) {
-        gameDataProvider.deleteFavorites(gameUiModel, completion: completion)
+    func addFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error> {
+        return gameDataProvider.addFavorites(gameUiModel)
     }
     
-    func checkFavorites(_ gameUiModel: GameUiModel, completion: @escaping (Bool) -> Void) {
-        gameDataProvider.checkFavorites(gameUiModel, completion: completion)
+    func checkFavorites(_ gameUiModel: GameUiModel) -> Future<Bool, Error> {
+        return gameDataProvider.checkFavorites(gameUiModel)
     }
     
-    func getAllFavorites(completion: @escaping ([GameUiModel]) -> Void) {
-        gameDataProvider.getAllFavorites(completion: completion)
+    func getAllFavorites() -> Future<[GameUiModel], Error> {
+        return gameDataProvider.getAllFavorites()
     }
     
 }
