@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import Alamofire
+import Cleanse
 
 class GameListViewModel : ObservableObject {
     @Published var games = [GameUiModel]()
@@ -19,8 +19,7 @@ class GameListViewModel : ObservableObject {
     private var page = 1
     private var keyword = ""
     
-    init(interactor: GameInteractorProtocol, games: [GameUiModel] = [GameUiModel]()) {
-        self.games = games
+    init(interactor: GameInteractorProtocol) {
         self.interactor = interactor
         self.searchGame(keyword: keyword)
     }
@@ -56,6 +55,14 @@ class GameListViewModel : ObservableObject {
         if games[games.count-5].uuid == game.uuid {
             page += 1
             fetchGameList()
+        }
+    }
+}
+
+extension GameListViewModel {
+    struct Module: Cleanse.Module {
+        static func configure(binder: Binder<Unscoped>) {
+            binder.bind(GameListViewModel.self).to(factory: GameListViewModel.init)
         }
     }
 }

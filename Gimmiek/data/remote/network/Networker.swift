@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
+import Cleanse
 
 protocol NetworkerProtocol: AnyObject {
     typealias Headers = [String: Any]
@@ -17,7 +18,7 @@ protocol NetworkerProtocol: AnyObject {
                 headers: Headers) -> Future<T, Error> where T: Decodable
 }
 
-final class Networker: NetworkerProtocol {
+class Networker: NetworkerProtocol {
     
     func get<T>(type: T.Type,
                 url: URL,
@@ -39,10 +40,19 @@ final class Networker: NetworkerProtocol {
                 case .failure(let error):
                     promise(.failure(
                         NSError(domain: error.destinationURL?.absoluteString ?? "", code: error.responseCode ?? 0)
-                    )
-                    )
+                    ))
                 }
             }
         })
+    }
+}
+
+extension Networker {
+    struct Module: Cleanse.Module {
+        static func configure(binder: Binder<Unscoped>) {
+            binder.bind(NetworkerProtocol.self).to {
+                Networker()
+            }
+        }
     }
 }

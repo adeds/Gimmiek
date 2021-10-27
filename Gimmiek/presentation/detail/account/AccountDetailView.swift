@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct AccountDetailView: View {
-    @ObservedObject var account = AccountUseCase()
+    @ObservedObject var viewModel: AccountViewModel
+    
+    let router: RouterProtocol
     
     @State var input: String = ""
     
     var body: some View {
         VStack {
-            Text(account.name)
+            Text(viewModel.name)
                 .font(.largeTitle)
                 .padding(.all, 5)
                 .background(Blur(style: .systemUltraThinMaterial))
@@ -31,7 +33,7 @@ struct AccountDetailView: View {
                       text: $input,
                       onEditingChanged: {_ in },
                       onCommit: {
-                        account.name = input
+                        viewModel.setName(name: input)
                       })
                 .keyboardType(.webSearch)
                 .padding(.all, 10)
@@ -48,7 +50,7 @@ struct AccountDetailView: View {
             Button(action: {
                 
             }, label: {
-                NavigationLink(destination: GameFavoritesView()
+                NavigationLink(destination: router.toGameFavorites()
                                 .navigationBarTitle("Favorites")) {
                     Text("My Favorites")
                         .frame(

@@ -7,16 +7,15 @@
 
 import Foundation
 import Combine
+import Cleanse
 
 protocol GameInteractorProtocol {
-    var repository: GameRepositoryProtocol { get }
     func loadMore(page:Int, keyword:String) -> AnyPublisher<[GameUiModel], Error>
 }
 
 class GameInteractor: GameInteractorProtocol {
     
     let repository: GameRepositoryProtocol
-    let networker: NetworkerProtocol = Networker()
     
     private var isLastPage = false
     private var keyword = ""
@@ -45,4 +44,12 @@ class GameInteractor: GameInteractorProtocol {
             self.prevList.append(contentsOf: gameUiModel)
             return self.prevList
         }.eraseToAnyPublisher()}
+}
+
+extension GameInteractor {
+    struct Module: Cleanse.Module {
+        static func configure(binder: Binder<Unscoped>) {
+            binder.bind(GameInteractorProtocol.self).to(factory: GameInteractor.init)
+        }
+    }
 }

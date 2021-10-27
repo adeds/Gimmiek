@@ -13,8 +13,7 @@ struct GameDetailView: View {
     
     var game: GameUiModel
     
-    var provider: GameDataProvider = { return GameDataProvider() }()
-    @State var isFavorite = false
+    @ObservedObject var viewModel: GameDetailViewModel
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom), content: {
@@ -124,48 +123,38 @@ struct GameDetailView: View {
                     Spacer(minLength: 50)
                 }.padding(.all, 10)
             }
-            Button(action: changeFavorite, label: {
-                Text(getTitle())
-                    .frame(
-                        minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
-                        idealWidth: .infinity,
-                        maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,
-                        minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
-                        idealHeight: 40,
-                        maxHeight: 40,
-                        alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/
-                    )
-            })
-            .background(Blur())
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.white, lineWidth: 1)
-            )
-            .padding(.horizontal, 10)
+            Button(
+                action: { viewModel.changeFavorite() },
+                label: {
+                    Text(getTitle())
+                        .frame(
+                            minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                            idealWidth: .infinity,
+                            maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,
+                            minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                            idealHeight: 40,
+                            maxHeight: 40,
+                            alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/
+                        )
+                })
+                .background(Blur())
+                .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.white, lineWidth: 1)
+                )
+                .padding(.horizontal, 10)
             
         })
-        .background(Image("game_bg")
-                        .resizable()
-                        .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
-        .onAppear {
-            checkFavorite()
-        }
+            .background(Image("game_bg")
+                            .resizable()
+                            .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/))
+            .onAppear {
+                viewModel.load(game: game)
+            }
     }
     
     private func getTitle() -> String {
-        return isFavorite ? "Unfavorite" : "Favorite"
-    }
-    
-    private func changeFavorite() {
-        self.provider.changeFavorites(game) {
-            checkFavorite()
-        }
-    }
-    
-    private func checkFavorite() {
-        provider.checkFavorites(game) { isFav in
-            isFavorite = isFav
-        }
+        return viewModel.isFavorite ? "Unfavorite" : "Favorite"
     }
 }
