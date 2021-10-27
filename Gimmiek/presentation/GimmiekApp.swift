@@ -24,6 +24,9 @@ class GimmiekApp: App {
     var gameDetailInteractor: GameDetailInteractorProtocol!
     var gameDetailViewModel: GameDetailViewModel!
     
+    var gameFavoriteInteractor: GameFavoritesInteractorProtocol!
+    var gameFavoriteViewModel: GameFavoritesViewModel!
+    
     var router: RouterProtocol!
     
     required init() {
@@ -45,6 +48,8 @@ class GimmiekApp: App {
         precondition(gameDataProvider != nil)
         precondition(gameDetailInteractor != nil)
         precondition(gameDetailViewModel != nil)
+        precondition(gameFavoriteInteractor != nil)
+        precondition(gameFavoriteViewModel != nil)
         precondition(router != nil)
     }
     var body: some Scene {
@@ -70,6 +75,9 @@ extension GimmiekApp {
         _ gameDetailInteractor: GameDetailInteractorProtocol,
         _ gameDetailViewModel: GameDetailViewModel,
         
+        _ gameFavoriteInteractor: GameFavoritesInteractorProtocol,
+        _ gameFavoriteViewModel: GameFavoritesViewModel,
+        
         _ router: RouterProtocol
     ) {
         self.networker = networker
@@ -86,6 +94,8 @@ extension GimmiekApp {
         self.gameDetailInteractor = gameDetailInteractor
         self.gameDetailViewModel = gameDetailViewModel
         
+        self.gameFavoriteInteractor = gameFavoriteInteractor
+        self.gameFavoriteViewModel = gameFavoriteViewModel
         self.router = router
     }
 }

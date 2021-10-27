@@ -10,9 +10,7 @@ import Cleanse
 
 protocol GameDetailInteractorProtocol {
     func changeFavorites(_ gameUiModel: GameUiModel?, completion: @escaping() -> Void)
-    func deleteFavorites(_ gameUiModel: GameUiModel?, completion: @escaping() -> Void)
     func checkFavorites(_ gameUiModel: GameUiModel?, completion: @escaping(_ isFavorite: Bool) -> Void)
-    func getAllFavorites(completion: @escaping(_ listFavorites: [GameUiModel]) -> Void)
 }
 
 class GameDetailInteractor: GameDetailInteractorProtocol {
@@ -31,15 +29,6 @@ class GameDetailInteractor: GameDetailInteractorProtocol {
         repository.changeFavorites(game, completion: completion)
     }
     
-    func deleteFavorites(_ gameUiModel: GameUiModel?, completion: @escaping () -> Void) {
-        guard let game = gameUiModel else {
-            print("game nil, load game first")
-            return
-        }
-        
-        repository.deleteFavorites(game, completion: completion)
-    }
-    
     func checkFavorites(_ gameUiModel: GameUiModel?, completion: @escaping (Bool) -> Void) {
         guard let game = gameUiModel else {
             print("game nil, load game first")
@@ -47,10 +36,6 @@ class GameDetailInteractor: GameDetailInteractorProtocol {
         }
         
         repository.checkFavorites(game, completion: completion)
-    }
-    
-    func getAllFavorites(completion: @escaping ([GameUiModel]) -> Void) {
-        repository.getAllFavorites(completion: completion)
     }
 }
 

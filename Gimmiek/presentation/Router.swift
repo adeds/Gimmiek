@@ -17,12 +17,15 @@ protocol RouterProtocol {
 class Router: RouterProtocol {
     let accountViewModel: AccountViewModel
     let gameDetailViewModel: GameDetailViewModel
-    let provider: GameDataProvider
+    let gameFavoriteViewModel: GameFavoritesViewModel
     
-    init(accountViewModel:AccountViewModel, gameDetailViewModel: GameDetailViewModel, provider: GameDataProvider) {
+    init(
+        accountViewModel:AccountViewModel,
+        gameDetailViewModel: GameDetailViewModel,
+        gameFavoriteViewModel: GameFavoritesViewModel) {
         self.accountViewModel = accountViewModel
         self.gameDetailViewModel = gameDetailViewModel
-        self.provider = provider
+        self.gameFavoriteViewModel = gameFavoriteViewModel
     }
     func toAccountDetail() -> AccountDetailView {
         return AccountDetailView(viewModel: accountViewModel, router: self)
@@ -33,7 +36,7 @@ class Router: RouterProtocol {
     }
     
     func toGameFavorites() -> GameFavoritesView {
-        return GameFavoritesView(provider: provider, router: self)
+        return GameFavoritesView(router: self, viewModel: gameFavoriteViewModel)
     }
 }
 

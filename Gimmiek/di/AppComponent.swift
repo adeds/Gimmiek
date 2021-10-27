@@ -27,6 +27,9 @@ struct AppComponent: Cleanse.RootComponent {
         binder.include(module: AccountInteractor.Module.self)
         binder.include(module: AccountViewModel.Module.self)
         
+        binder.include(module: GameFavoritesInteractor.Module.self)
+        binder.include(module: GameFavoritesViewModel.Module.self)
+        
         binder.include(module: Router.Module.self)
     }
 

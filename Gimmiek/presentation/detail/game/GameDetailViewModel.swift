@@ -15,13 +15,13 @@ class GameDetailViewModel: ObservableObject {
     
     private var interactor: GameDetailInteractorProtocol
     private var cancellables = Set<AnyCancellable>()
-    var game: GameUiModel? = nil
+    var game: GameUiModel?
     
     init(interactor: GameDetailInteractorProtocol) {
         self.interactor = interactor
     }
     
-    func load(game: GameUiModel){
+    func load(game: GameUiModel) {
         self.game = game
         checkFavorite()
     }
