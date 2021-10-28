@@ -13,37 +13,20 @@ import Cleanse
 protocol NetworkerProtocol: AnyObject {
     typealias Headers = [String: Any]
     
-    func get<T>(type: T.Type,
-                url: URL,
-                headers: Headers) -> Future<T, Error> where T: Decodable
+    func getGame(url: URL, result: @escaping (Result<Game, AFError>) -> Void)
 }
 
 class Networker: NetworkerProtocol {
     
-    func get<T>(type: T.Type,
-                url: URL,
-                headers: Headers) -> Future<T, Error> where T : Decodable {
-        
-        var urlRequest = URLRequest(url: url)
-        
-        headers.forEach { key, value in
-            if let value = value as? String {
-                urlRequest.setValue(value, forHTTPHeaderField: key)
-            }
-        }
-        
-        return Future({ promise in
-            AF.request(urlRequest).responseDecodable(of: T.self) { (response: DataResponse<T, AFError>) in
+    func getGame(url: URL,result: @escaping (Result<Game, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseDecodable(of: Game.self) { response in
                 switch response.result {
-                case .success(let value):
-                    promise(.success(value))
-                case .failure(let error):
-                    promise(.failure(
-                        NSError(domain: error.destinationURL?.absoluteString ?? "", code: error.responseCode ?? 0)
-                    ))
+                case .success(let value): result(.success(value))
+                case .failure: result(.failure(.invalidURL(url: url)))
                 }
             }
-        })
     }
 }
 

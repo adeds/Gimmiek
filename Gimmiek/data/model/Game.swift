@@ -14,7 +14,7 @@ import Foundation
 
 // MARK: - Game
 struct Game: Codable {
-    let results: [Result]
+    let results: [GameResult]
     let next : String?
     
     enum CodingKeys: String, CodingKey {
@@ -23,7 +23,7 @@ struct Game: Codable {
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct GameResult: Codable {
     let id: Int?
     let name, released, backgroundImage, updated: String?
     let rating: Double?
@@ -103,45 +103,4 @@ class JSONNull: Codable {
         var container = encoder.singleValueContainer()
         try container.encodeNil()
     }
-}
-
-extension Game {
-    private func getPlatform(_ platforms: [PlatformElement]?) -> [String] {
-        guard let platforms = platforms else {
-            return [String]()
-        }
-        return platforms.compactMap { $0.platform?.name }
-    }
-    
-    private func getGenresAndTags(_ genres: [Genre]?) -> [String] {
-        guard let genres = genres else {
-            return [String]()
-        }
-        return genres.compactMap { $0.name }
-    }
-    
-    private func getScreenshots(_ screenshots: [ShortScreenshot]?) -> [String] {
-        guard let screenshots = screenshots else {
-            return [String]()
-        }
-        return screenshots.compactMap { $0.image }
-    }
-    
-    func toGameUiModel() -> [GameUiModel] {
-        return self.results.map { itemGame in
-            GameUiModel(
-                gameId: itemGame.id,
-                name: itemGame.name ?? " - ",
-                released: itemGame.released ?? " - ",
-                updated: itemGame.updated ?? " - ",
-                backgroundImage: itemGame.backgroundImage,
-                rating: itemGame.rating ?? 0.0,
-                ratingTop: itemGame.ratingTop ?? 0,
-                platforms: self.getPlatform(itemGame.platforms),
-                genres: self.getGenresAndTags(itemGame.genres),
-                screenshots: self.getScreenshots(itemGame.shortScreenshots),
-                tags: self.getGenresAndTags(itemGame.tags))
-        }
-    }
-    
 }

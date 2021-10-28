@@ -33,15 +33,15 @@ class GameInteractor: GameInteractorProtocol {
                 .eraseToAnyPublisher()
             return noFetch
         }
+    
         return result.map { game in
-            let gameUiModel = game.toGameUiModel()
             let isNewKeyword = self.keyword != keyword
-            self.isLastPage = gameUiModel.isEmpty && !isNewKeyword
+            self.isLastPage = game.isEmpty && !isNewKeyword
             self.keyword = keyword
             if isNewKeyword {
                 self.prevList.removeAll()
             }
-            self.prevList.append(contentsOf: gameUiModel)
+            self.prevList.append(contentsOf: game)
             return self.prevList
         }.eraseToAnyPublisher()}
 }

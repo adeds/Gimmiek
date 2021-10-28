@@ -7,7 +7,7 @@
 import Foundation
 
 struct Constant {
-    static let rawrgApiKey = "your apikey"
+    static let rawrgApiKey = "f35a5302fe024c59b9f0414f962201f9"
     static let rawgBaseUrl = "api.rawg.io"
     
     struct Path {

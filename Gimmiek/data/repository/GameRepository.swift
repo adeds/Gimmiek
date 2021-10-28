@@ -10,8 +10,8 @@ import Combine
 import Cleanse
 
 protocol GameRepositoryProtocol {
-
-    func loadMore(page:Int, keyword: String) -> Future<Game, Error>
+    
+    func loadMore(page:Int, keyword: String) -> Future<[GameUiModel], Error>
     func deleteFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error>
     func addFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error>
     func checkFavorites(_ gameUiModel: GameUiModel) -> Future<Bool, Error>
@@ -19,21 +19,29 @@ protocol GameRepositoryProtocol {
 }
 
 final class GameRepository : GameRepositoryProtocol {
-
+    
     let networker: NetworkerProtocol
     
     let gameDataProvider: GameDataProvider
+    private var cancellables = Set<AnyCancellable>()
     
     init(networker: NetworkerProtocol, gameDataProvider: GameDataProvider) {
         self.networker = networker
         self.gameDataProvider = gameDataProvider
     }
     
-    func loadMore(page: Int, keyword: String) -> Future<Game, Error> {
+    func loadMore(page: Int, keyword: String) -> Future<[GameUiModel], Error> {
         let endpoint = Endpoint.game(page: page, keyword: keyword)
-        return networker.get(type: Game.self,
-                             url: endpoint.url,
-                             headers: endpoint.headers)
+        return Future { promise in
+            self.networker.getGame(url: endpoint.url) { result in
+                switch result {
+                case .success(let response):
+                    promise(.success(GameMapper.mapToUiModel(input: response)))
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }
     }
     
     func deleteFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error> {
