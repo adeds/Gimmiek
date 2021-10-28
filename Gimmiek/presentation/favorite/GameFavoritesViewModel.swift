@@ -34,8 +34,8 @@ class GameFavoritesViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
     
-    func deleteFavorites(game:GameUiModel) {
-        interactor.deleteFavorites(game)
+    func deleteFavorites(gameId: Int?) {
+        interactor.deleteFavorites(gameId)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {

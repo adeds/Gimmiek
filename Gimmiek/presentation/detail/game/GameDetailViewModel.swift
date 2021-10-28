@@ -27,7 +27,7 @@ class GameDetailViewModel: ObservableObject {
     }
     
     private func checkFavorite() {
-        interactor.checkFavorites(game)
+        interactor.checkFavorites(game?.gameId ?? 0)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {

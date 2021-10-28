@@ -92,13 +92,13 @@ class GameDataProvider {
         })
     }
     
-    func deleteFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error>  {
+    func deleteFavorites(_ gameId: Int?) -> Future<Any?, Error> {
         let taskContext = newTaskContext()
         return Future({ promise in
             taskContext.perform {
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constant.CoreData.gameDataModel)
                 fetchRequest.fetchLimit = 1
-                fetchRequest.predicate = NSPredicate(format: "gameId == \(gameUiModel.gameId ?? 0)")
+                fetchRequest.predicate = NSPredicate(format: "gameId == \(gameId ?? 0)")
                 let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
                 batchDeleteRequest.resultType = .resultTypeCount
                 if let batchDeleteResult = try? taskContext.execute(batchDeleteRequest) as? NSBatchDeleteResult {
@@ -110,14 +110,14 @@ class GameDataProvider {
         })
     }
     
-    func checkFavorites(_ gameUiModel: GameUiModel) -> Future<Bool, Error> {
+    func checkFavorites(_ gameId: Int?) -> Future<Bool, Error> {
         let taskContext = newTaskContext()
         
         return Future({ promise in
             taskContext.perform {
                 let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constant.CoreData.gameDataModel)
                 fetchRequest.fetchLimit = 1
-                fetchRequest.predicate = NSPredicate(format: "gameId == \(gameUiModel.gameId ?? 0)")
+                fetchRequest.predicate = NSPredicate(format: "gameId == \(gameId ?? 0)")
                 
                 do {
                     if let result = try taskContext.fetch(fetchRequest).first {
@@ -137,7 +137,7 @@ class GameDataProvider {
         })
     }
     
-    func getAllFavorites()  -> Future<[GameUiModel], Error>  {
+    func getAllFavorites()  -> Future<[GameUiModel], Error> {
         let taskContext = newTaskContext()
         return Future({ promise in
             taskContext.perform {

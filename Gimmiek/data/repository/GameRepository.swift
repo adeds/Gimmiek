@@ -12,9 +12,9 @@ import Cleanse
 protocol GameRepositoryProtocol {
     
     func loadMore(page:Int, keyword: String) -> Future<[GameUiModel], Error>
-    func deleteFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error>
+    func deleteFavorites(_ gameId: Int?) -> Future<Any?, Error>
     func addFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error>
-    func checkFavorites(_ gameUiModel: GameUiModel) -> Future<Bool, Error>
+    func checkFavorites(_ gameId: Int?) -> Future<Bool, Error>
     func getAllFavorites()  -> Future<[GameUiModel], Error>
 }
 
@@ -44,16 +44,16 @@ final class GameRepository : GameRepositoryProtocol {
         }
     }
     
-    func deleteFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error> {
-        return gameDataProvider.deleteFavorites(gameUiModel)
+    func deleteFavorites(_ gameId: Int?) -> Future<Any?, Error> {
+        return gameDataProvider.deleteFavorites(gameId)
     }
     
     func addFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error> {
         return gameDataProvider.addFavorites(gameUiModel)
     }
     
-    func checkFavorites(_ gameUiModel: GameUiModel) -> Future<Bool, Error> {
-        return gameDataProvider.checkFavorites(gameUiModel)
+    func checkFavorites(_ gameId: Int?) -> Future<Bool, Error> {
+        return gameDataProvider.checkFavorites(gameId)
     }
     
     func getAllFavorites() -> Future<[GameUiModel], Error> {

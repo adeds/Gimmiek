@@ -11,7 +11,7 @@ import Combine
 
 protocol GameFavoritesInteractorProtocol {
     func getAllFavorites() -> AnyPublisher<[GameUiModel], Error>
-    func deleteFavorites(_ gameUiModel: GameUiModel?) -> AnyPublisher<Any?, Error>
+    func deleteFavorites(_ gameId: Int?) -> AnyPublisher<Any?, Error>
 }
 
 class GameFavoritesInteractor : GameFavoritesInteractorProtocol {
@@ -26,12 +26,8 @@ class GameFavoritesInteractor : GameFavoritesInteractorProtocol {
         return repository.getAllFavorites().eraseToAnyPublisher()
     }
     
-    func deleteFavorites(_ gameUiModel: GameUiModel?) -> AnyPublisher<Any?, Error> {
-        guard let game = gameUiModel else {
-            print("game nil, load game first")
-            return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
-        }
-        return repository.deleteFavorites(game).eraseToAnyPublisher()
+    func deleteFavorites(_ gameId: Int?) -> AnyPublisher<Any?, Error> {
+        return repository.deleteFavorites(gameId).eraseToAnyPublisher()
     }
 }
 

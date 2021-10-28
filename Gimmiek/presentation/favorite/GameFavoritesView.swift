@@ -35,7 +35,7 @@ struct GameFavoritesView: View {
                 .onDelete(perform: { indexSet in
                     withAnimation {
                         indexSet.forEach { index in
-                            viewModel.deleteFavorites(game: viewModel.gamesFavorites[index])
+                            viewModel.deleteFavorites(gameId: viewModel.gamesFavorites[index].gameId)
                         }
                     }
                 })

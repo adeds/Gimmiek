@@ -11,7 +11,7 @@ import Combine
 
 protocol GameDetailInteractorProtocol {
     func changeFavorites(_ gameUiModel: GameUiModel?) -> AnyPublisher<Bool, Error>
-    func checkFavorites(_ gameUiModel: GameUiModel?) -> AnyPublisher<Bool, Error>
+    func checkFavorites(_ gameId: Int) -> AnyPublisher<Bool, Error>
 }
 
 class GameDetailInteractor: GameDetailInteractorProtocol {
@@ -27,23 +27,18 @@ class GameDetailInteractor: GameDetailInteractorProtocol {
             print("game nil, load game first")
             return Empty().eraseToAnyPublisher()
         }
-        return repository.checkFavorites(game).map { isFavorite in
+        return repository.checkFavorites(game.gameId).map { isFavorite in
             if isFavorite {
-                self.repository.deleteFavorites(game)
+                self.repository.deleteFavorites(game.gameId)
             } else {
                 self.repository.addFavorites(game)
             }
-            
             return !isFavorite
         }.eraseToAnyPublisher()
     }
     
-    func checkFavorites(_ gameUiModel: GameUiModel?) -> AnyPublisher<Bool, Error> {
-        guard let game = gameUiModel else {
-            print("game nil, load game first")
-            return Empty().eraseToAnyPublisher()
-        }
-        return repository.checkFavorites(game).eraseToAnyPublisher()
+    func checkFavorites(_ gameId: Int) -> AnyPublisher<Bool, Error> {
+        return repository.checkFavorites(gameId).eraseToAnyPublisher()
     }
 }
 
