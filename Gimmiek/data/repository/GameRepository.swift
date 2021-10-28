@@ -49,7 +49,7 @@ final class GameRepository : GameRepositoryProtocol {
     }
     
     func addFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error> {
-        return gameDataProvider.addFavorites(gameUiModel)
+        return gameDataProvider.addFavorites(GameMapper.mapToUiEntity(input: gameUiModel))
     }
     
     func checkFavorites(_ gameId: Int?) -> Future<Bool, Error> {
@@ -57,7 +57,16 @@ final class GameRepository : GameRepositoryProtocol {
     }
     
     func getAllFavorites() -> Future<[GameUiModel], Error> {
-        return gameDataProvider.getAllFavorites()
+        return Future { promise in
+            self.gameDataProvider.getAllFavorites { localData in
+                switch localData {
+                case .success(let entities):
+                    promise(.success(GameMapper.mapToUiModel(input: entities)))
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }
     }
     
 }

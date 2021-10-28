@@ -42,6 +42,7 @@
 		D0EE6C6B26D00342001286FD /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D0EE6C6A26D00342001286FD /* SDWebImageSwiftUI */; };
 		D0F97A8E26CEC2C4003E5A32 /* game.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0F97A8C26CEC2C4003E5A32 /* game.xcdatamodeld */; };
 		D0FA4A53272AD527008993FB /* GameMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA4A52272AD527008993FB /* GameMapper.swift */; };
+		D0FA4A55272AF75F008993FB /* GameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA4A54272AF75F008993FB /* GameEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		D0DFCE3D2724A74800514BFD /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		D0F97A8D26CEC2C4003E5A32 /* game.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = game.xcdatamodel; sourceTree = "<group>"; };
 		D0FA4A52272AD527008993FB /* GameMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMapper.swift; sourceTree = "<group>"; };
+		D0FA4A54272AF75F008993FB /* GameEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				D0BDA28A26C826B5005E0382 /* GameUiModel.swift */,
 				D0BDA28126C80F52005E0382 /* Game.swift */,
+				D0FA4A54272AF75F008993FB /* GameEntity.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				D01272D127212B5700AF5D91 /* GameRepository.swift in Sources */,
 				D0FA4A53272AD527008993FB /* GameMapper.swift in Sources */,
 				D0C430652725A2F5004B0889 /* AccountInteractor.swift in Sources */,
+				D0FA4A55272AF75F008993FB /* GameEntity.swift in Sources */,
 				D0BDA28226C80F52005E0382 /* Game.swift in Sources */,
 				D0C36A3526D549EF00D647FB /* GameFavoritesView.swift in Sources */,
 				D0C4306B2725A447004B0889 /* UserDataProvider.swift in Sources */,

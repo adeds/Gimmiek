@@ -13,18 +13,18 @@ import Cleanse
 protocol NetworkerProtocol: AnyObject {
     typealias Headers = [String: Any]
     
-    func getGame(url: URL, result: @escaping (Result<Game, AFError>) -> Void)
+    func getGame(url: URL, response: @escaping (Result<Game, AFError>) -> Void)
 }
 
 class Networker: NetworkerProtocol {
     
-    func getGame(url: URL,result: @escaping (Result<Game, AFError>) -> Void) {
+    func getGame(url: URL,response: @escaping (Result<Game, AFError>) -> Void) {
         AF.request(url)
             .validate()
-            .responseDecodable(of: Game.self) { response in
-                switch response.result {
-                case .success(let value): result(.success(value))
-                case .failure: result(.failure(.invalidURL(url: url)))
+            .responseDecodable(of: Game.self) { responseData in
+                switch responseData.result {
+                case .success(let value): response(.success(value))
+                case .failure: response(.failure(.invalidURL(url: url)))
                 }
             }
     }

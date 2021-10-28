@@ -52,7 +52,7 @@ class GameListViewModel : ObservableObject {
             return
         }
         
-        if games[games.count-5].uuid == game.uuid {
+        if games[games.count-5].gameId == game.gameId {
             page += 1
             fetchGameList()
         }

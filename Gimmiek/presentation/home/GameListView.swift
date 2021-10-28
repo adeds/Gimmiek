@@ -50,7 +50,7 @@ struct GameListView: View {
                         
                     }.listRowBackground(SwiftUI.Color.clear)
                     
-                    ForEach(viewModel.games, id: \.uuid) { (game: GameUiModel) in
+                    ForEach(viewModel.games, id: \.gameId) { (game: GameUiModel) in
                         NavigationLink(
                             destination: router.toGameDetail(game: game)
                                 .navigationBarTitle(game.name)) {

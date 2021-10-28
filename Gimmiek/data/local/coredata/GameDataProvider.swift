@@ -61,24 +61,24 @@ class GameDataProvider {
         return taskContext
     }
     
-    func addFavorites(_ gameUiModel: GameUiModel) -> Future<Any?, Error> {
+    func addFavorites(_ gameEntity: GameEntity) -> Future<Any?, Error> {
         let taskContext = newTaskContext()
         
         return Future({ promise in
             taskContext.performAndWait {
                 if let entity = NSEntityDescription.entity(forEntityName: Constant.CoreData.gameDataModel, in: taskContext) {
                     let game = NSManagedObject(entity: entity, insertInto: taskContext)
-                    game.setValue(gameUiModel.backgroundImage, forKeyPath: GameContract.backgroundImage)
-                    game.setValue(gameUiModel.gameId, forKeyPath: GameContract.gameId)
-                    game.setValue(gameUiModel.released, forKeyPath: GameContract.released)
-                    game.setValue(gameUiModel.updated, forKeyPath: GameContract.updated)
-                    game.setValue(self.listToJsonString(list:gameUiModel.genres), forKeyPath: GameContract.genres)
-                    game.setValue(gameUiModel.name, forKeyPath: GameContract.name)
-                    game.setValue(self.listToJsonString(list:gameUiModel.platforms), forKeyPath: GameContract.platforms)
-                    game.setValue(gameUiModel.rating, forKeyPath: GameContract.rating)
-                    game.setValue(gameUiModel.ratingTop, forKeyPath: GameContract.ratingTop)
-                    game.setValue(self.listToJsonString(list:gameUiModel.screenshots), forKeyPath: GameContract.screenshots)
-                    game.setValue(self.listToJsonString(list:gameUiModel.tags), forKeyPath: GameContract.tags)
+                    game.setValue(gameEntity.backgroundImage, forKeyPath: GameContract.backgroundImage)
+                    game.setValue(gameEntity.gameId, forKeyPath: GameContract.gameId)
+                    game.setValue(gameEntity.released, forKeyPath: GameContract.released)
+                    game.setValue(gameEntity.updated, forKeyPath: GameContract.updated)
+                    game.setValue(self.listToJsonString(list:gameEntity.genres), forKeyPath: GameContract.genres)
+                    game.setValue(gameEntity.name, forKeyPath: GameContract.name)
+                    game.setValue(self.listToJsonString(list:gameEntity.platforms), forKeyPath: GameContract.platforms)
+                    game.setValue(gameEntity.rating, forKeyPath: GameContract.rating)
+                    game.setValue(gameEntity.ratingTop, forKeyPath: GameContract.ratingTop)
+                    game.setValue(self.listToJsonString(list:gameEntity.screenshots), forKeyPath: GameContract.screenshots)
+                    game.setValue(self.listToJsonString(list:gameEntity.tags), forKeyPath: GameContract.tags)
                     
                     do {
                         try taskContext.save()
@@ -137,40 +137,40 @@ class GameDataProvider {
         })
     }
     
-    func getAllFavorites()  -> Future<[GameUiModel], Error> {
+    func getAllFavorites(localData: @escaping (Result<[GameEntity], Error>) -> Void){
         let taskContext = newTaskContext()
-        return Future({ promise in
-            taskContext.perform {
-                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constant.CoreData.gameDataModel)
+        
+        taskContext.perform {
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constant.CoreData.gameDataModel)
+            
+            do {
+                let results = try taskContext.fetch(fetchRequest)
+                var games: [GameEntity] = []
                 
-                do {
-                    let results = try taskContext.fetch(fetchRequest)
-                    var games: [GameUiModel] = []
+                for result in results {
+                    let game = GameEntity(
+                        gameId: Int(result.value(forKeyPath: GameContract.gameId) as? Int16 ?? 0),
+                        name: result.value(forKeyPath: GameContract.name) as? String ?? " - ",
+                        released: result.value(forKeyPath: GameContract.released) as? String ?? " - ",
+                        updated: result.value(forKeyPath: GameContract.updated) as? String ?? " - ",
+                        backgroundImage: result.value(forKeyPath: GameContract.backgroundImage) as? String ?? " - ",
+                        rating: result.value(forKeyPath: GameContract.gameId) as? Double ?? 0.0,
+                        ratingTop: Int(result.value(forKeyPath: GameContract.ratingTop) as? Int16 ?? 0),
+                        platforms: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.platforms) as? String ?? " - "),
+                        genres: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.genres) as? String ?? " - "),
+                        screenshots: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.screenshots) as? String ?? " - "),
+                        tags: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.tags) as? String ?? " - ")
+                    )
                     
-                    for result in results {
-                        let game = GameUiModel(
-                            gameId: Int(result.value(forKeyPath: GameContract.gameId) as? Int16 ?? 0),
-                            name: result.value(forKeyPath: GameContract.name) as? String ?? " - ",
-                            released: result.value(forKeyPath: GameContract.released) as? String ?? " - ",
-                            updated: result.value(forKeyPath: GameContract.updated) as? String ?? " - ",
-                            backgroundImage: result.value(forKeyPath: GameContract.backgroundImage) as? String ?? " - ",
-                            rating: result.value(forKeyPath: GameContract.gameId) as? Double ?? 0.0,
-                            ratingTop: Int(result.value(forKeyPath: GameContract.ratingTop) as? Int16 ?? 0),
-                            platforms: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.platforms) as? String ?? " - "),
-                            genres: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.genres) as? String ?? " - "),
-                            screenshots: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.screenshots) as? String ?? " - "),
-                            tags: self.jsonStringToList(jsonString: result.value(forKeyPath: GameContract.tags) as? String ?? " - ")
-                        )
-                        
-                        games.append(game)
-                    }
-                    promise(.success(games))
-                } catch let error as NSError {
-                    promise(.failure(error))
+                    games.append(game)
                 }
-                
+                localData(.success(games))
+            } catch let error as NSError {
+                localData(.failure(error))
             }
-        })
+            
+        }
+        
     }
     
     private func listToJsonString(list : [String]) -> String {

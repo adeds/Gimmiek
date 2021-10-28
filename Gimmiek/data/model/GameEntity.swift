@@ -1,13 +1,14 @@
 //
-//  GameUiModel.swift
+//  GameEntity.swift
 //  Gimmiek
 //
-//  Created by Ade Dyas  on 14/08/21.
+//  Created by Ade Dyas  on 28/10/21.
 //
 
 import Foundation
 
-class GameUiModel {
+class GameEntity: Identifiable {
+    var uuid = UUID()
     var gameId: Int?
     var name, released, updated: String
     var backgroundImage: String

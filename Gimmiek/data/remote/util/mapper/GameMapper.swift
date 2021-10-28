@@ -28,6 +28,43 @@ final class GameMapper {
         }
     }
     
+    static func mapToUiModel(
+        input game: [GameEntity]
+    ) -> [GameUiModel] {
+        return game.map { itemGame in
+            GameUiModel(
+                gameId: itemGame.gameId,
+                name: itemGame.name,
+                released: itemGame.released,
+                updated: itemGame.updated,
+                backgroundImage: itemGame.backgroundImage,
+                rating: itemGame.rating,
+                ratingTop: itemGame.ratingTop,
+                platforms: itemGame.platforms,
+                genres: itemGame.genres,
+                screenshots: itemGame.screenshots,
+                tags: itemGame.tags)
+        }
+    }
+    
+    static func mapToUiEntity(
+        input itemGame: GameUiModel
+    ) -> GameEntity {
+        return GameEntity(
+            gameId: itemGame.gameId,
+            name: itemGame.name,
+            released: itemGame.released,
+            updated: itemGame.updated,
+            backgroundImage: itemGame.backgroundImage,
+            rating: itemGame.rating,
+            ratingTop: itemGame.ratingTop,
+            platforms: itemGame.platforms,
+            genres: itemGame.genres,
+            screenshots: itemGame.screenshots,
+            tags: itemGame.tags)
+        
+    }
+    
     private static func getPlatform(_ platforms: [PlatformElement]?) -> [String] {
         guard let platforms = platforms else {
             return [String]()

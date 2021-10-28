@@ -15,7 +15,7 @@ struct GameFavoritesView: View {
     var body: some View {
         ZStack {
             List {
-                ForEach(viewModel.gamesFavorites, id: \.uuid) { (game: GameUiModel) in
+                ForEach(viewModel.gamesFavorites, id: \.gameId) { (game: GameUiModel) in
                     NavigationLink(
                         destination: router.toGameDetail(game: game)
                             .navigationBarTitle(game.name)) {
