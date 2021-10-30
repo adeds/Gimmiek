@@ -18,7 +18,7 @@ protocol NetworkerProtocol: AnyObject {
 
 class Networker: NetworkerProtocol {
     
-    func getGame(url: URL,response: @escaping (Result<Game, AFError>) -> Void) {
+    func getGame(url: URL, response: @escaping (Result<Game, AFError>) -> Void) {
         AF.request(url)
             .validate()
             .responseDecodable(of: Game.self) { responseData in

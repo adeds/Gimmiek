@@ -137,7 +137,7 @@ class GameDataProvider {
         })
     }
     
-    func getAllFavorites(localData: @escaping (Result<[GameEntity], Error>) -> Void){
+    func getAllFavorites(localData: @escaping (Result<[GameEntity], Error>) -> Void) {
         let taskContext = newTaskContext()
         
         taskContext.perform {

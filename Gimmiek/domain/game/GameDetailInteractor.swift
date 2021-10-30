@@ -28,11 +28,7 @@ class GameDetailInteractor: GameDetailInteractorProtocol {
             return Empty().eraseToAnyPublisher()
         }
         return repository.checkFavorites(game.gameId).map { isFavorite in
-            if isFavorite {
-                self.repository.deleteFavorites(game.gameId)
-            } else {
-                self.repository.addFavorites(game)
-            }
+            _ = isFavorite ? self.repository.deleteFavorites(game.gameId) : self.repository.addFavorites(game)
             return !isFavorite
         }.eraseToAnyPublisher()
     }
