@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D00F1AAC272EE7A400FFA503 /* GimmiekTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F1AAB272EE7A400FFA503 /* GimmiekTests.swift */; };
+		D00F1AB3272EE7DF00FFA503 /* GameMapperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F1A9E272EDBD900FFA503 /* GameMapperTest.swift */; };
+		D00F1AB4272EE83400FFA503 /* RandomFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F1AA1272EDC4000FFA503 /* RandomFactory.swift */; };
+		D00F1AB5272EE83700FFA503 /* GameFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F1AA3272EDCE000FFA503 /* GameFactory.swift */; };
+		D00F1AB9272EE9A800FFA503 /* GameMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA4A52272AD527008993FB /* GameMapper.swift */; };
+		D00F1ABA272EE9D700FFA503 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA28126C80F52005E0382 /* Game.swift */; };
+		D00F1ABB272EEA3100FFA503 /* GameUiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BDA28A26C826B5005E0382 /* GameUiModel.swift */; };
+		D00F1ABC272EEA4200FFA503 /* GameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA4A54272AF75F008993FB /* GameEntity.swift */; };
 		D01272D127212B5700AF5D91 /* GameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01272D027212B5700AF5D91 /* GameRepository.swift */; };
 		D01272D627212C6700AF5D91 /* GameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01272D527212C6700AF5D91 /* GameInteractor.swift */; };
 		D01272DB272135C000AF5D91 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D01272DA272135C000AF5D91 /* Alamofire */; };
@@ -45,7 +53,22 @@
 		D0FA4A55272AF75F008993FB /* GameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA4A54272AF75F008993FB /* GameEntity.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D00F1AAD272EE7A400FFA503 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0BDA26326C80E92005E0382 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0BDA26A26C80E92005E0382;
+			remoteInfo = Gimmiek;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		D00F1A9E272EDBD900FFA503 /* GameMapperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMapperTest.swift; sourceTree = "<group>"; };
+		D00F1AA1272EDC4000FFA503 /* RandomFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFactory.swift; sourceTree = "<group>"; };
+		D00F1AA3272EDCE000FFA503 /* GameFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFactory.swift; sourceTree = "<group>"; };
+		D00F1AA9272EE7A400FFA503 /* GimmiekTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GimmiekTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D00F1AAB272EE7A400FFA503 /* GimmiekTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GimmiekTests.swift; sourceTree = "<group>"; };
 		D01272CC27211FE700AF5D91 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D01272D027212B5700AF5D91 /* GameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRepository.swift; sourceTree = "<group>"; };
 		D01272D527212C6700AF5D91 /* GameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInteractor.swift; sourceTree = "<group>"; };
@@ -85,6 +108,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D00F1AA6272EE7A400FFA503 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0BDA26826C80E92005E0382 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -98,6 +128,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D00F1A9D272EDBBA00FFA503 /* mappertest */ = {
+			isa = PBXGroup;
+			children = (
+				D00F1A9E272EDBD900FFA503 /* GameMapperTest.swift */,
+			);
+			path = mappertest;
+			sourceTree = "<group>";
+		};
+		D00F1AA0272EDC1C00FFA503 /* factorytest */ = {
+			isa = PBXGroup;
+			children = (
+				D00F1AA1272EDC4000FFA503 /* RandomFactory.swift */,
+				D00F1AA3272EDCE000FFA503 /* GameFactory.swift */,
+			);
+			path = factorytest;
+			sourceTree = "<group>";
+		};
+		D00F1AAA272EE7A400FFA503 /* GimmiekTests */ = {
+			isa = PBXGroup;
+			children = (
+				D00F1A9D272EDBBA00FFA503 /* mappertest */,
+				D00F1AA0272EDC1C00FFA503 /* factorytest */,
+				D00F1AAB272EE7A400FFA503 /* GimmiekTests.swift */,
+			);
+			path = GimmiekTests;
+			sourceTree = "<group>";
+		};
 		D01272CE272127F000AF5D91 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +240,7 @@
 			children = (
 				D01272CC27211FE700AF5D91 /* .swiftlint.yml */,
 				D0BDA26D26C80E92005E0382 /* Gimmiek */,
+				D00F1AAA272EE7A400FFA503 /* GimmiekTests */,
 				D0BDA26C26C80E92005E0382 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -191,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				D0BDA26B26C80E92005E0382 /* Gimmiek.app */,
+				D00F1AA9272EE7A400FFA503 /* GimmiekTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,6 +403,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D00F1AA8272EE7A400FFA503 /* GimmiekTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D00F1AAF272EE7A400FFA503 /* Build configuration list for PBXNativeTarget "GimmiekTests" */;
+			buildPhases = (
+				D00F1AA5272EE7A400FFA503 /* Sources */,
+				D00F1AA6272EE7A400FFA503 /* Frameworks */,
+				D00F1AA7272EE7A400FFA503 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D00F1AAE272EE7A400FFA503 /* PBXTargetDependency */,
+			);
+			name = GimmiekTests;
+			productName = GimmiekTests;
+			productReference = D00F1AA9272EE7A400FFA503 /* GimmiekTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D0BDA26A26C80E92005E0382 /* Gimmiek */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0BDA27A26C80E94005E0382 /* Build configuration list for PBXNativeTarget "Gimmiek" */;
@@ -373,9 +450,13 @@
 		D0BDA26326C80E92005E0382 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					D00F1AA8272EE7A400FFA503 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = D0BDA26A26C80E92005E0382;
+					};
 					D0BDA26A26C80E92005E0382 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -400,11 +481,19 @@
 			projectRoot = "";
 			targets = (
 				D0BDA26A26C80E92005E0382 /* Gimmiek */,
+				D00F1AA8272EE7A400FFA503 /* GimmiekTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D00F1AA7272EE7A400FFA503 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0BDA26926C80E92005E0382 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -437,6 +526,21 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D00F1AA5272EE7A400FFA503 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00F1AB3272EE7DF00FFA503 /* GameMapperTest.swift in Sources */,
+				D00F1ABA272EE9D700FFA503 /* Game.swift in Sources */,
+				D00F1ABC272EEA4200FFA503 /* GameEntity.swift in Sources */,
+				D00F1AB4272EE83400FFA503 /* RandomFactory.swift in Sources */,
+				D00F1ABB272EEA3100FFA503 /* GameUiModel.swift in Sources */,
+				D00F1AB9272EE9A800FFA503 /* GameMapper.swift in Sources */,
+				D00F1AB5272EE83700FFA503 /* GameFactory.swift in Sources */,
+				D00F1AAC272EE7A400FFA503 /* GimmiekTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0BDA26726C80E92005E0382 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -477,7 +581,65 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D00F1AAE272EE7A400FFA503 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0BDA26A26C80E92005E0382 /* Gimmiek */;
+			targetProxy = D00F1AAD272EE7A400FFA503 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D00F1AB0272EE7A400FFA503 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4L75Q22Z5W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = id.adeds.swiftuicoredata.GimmiekTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gimmiek.app/Gimmiek";
+			};
+			name = Debug;
+		};
+		D00F1AB1272EE7A400FFA503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4L75Q22Z5W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = id.adeds.swiftuicoredata.GimmiekTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gimmiek.app/Gimmiek";
+			};
+			name = Release;
+		};
 		D0BDA27826C80E94005E0382 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -515,6 +677,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -576,6 +739,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -641,6 +805,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D00F1AAF272EE7A400FFA503 /* Build configuration list for PBXNativeTarget "GimmiekTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D00F1AB0272EE7A400FFA503 /* Debug */,
+				D00F1AB1272EE7A400FFA503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D0BDA26626C80E92005E0382 /* Build configuration list for PBXProject "Gimmiek" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
