@@ -1,9 +1,9 @@
 name: Test
 on:
   push:
-    branches: [ main, expert-two ]
+    branches: [ main, expert ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, expert ]
 jobs:
   build:
 
