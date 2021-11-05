@@ -11,12 +11,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: List available Xcode versions
+      run: ls /Applications | grep Xcode
     - name: Build
       run: |
        xcodebuild clean build -workspace "Gimmiek.xcworkspace" -scheme "Gimmiek" -destination "platform=iOS Simulator,name=iPhone 12 Pro,OS=latest" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO    
-    - name: List available Xcode versions
-      run: ls /Applications | grep Xcode
-    - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_12.2.app && /usr/bin/xcodebuild -version
     - name: Run unit tests
-      run: xcodebuild test -workspace "Gimmiek.xcworkspace" -scheme "Gimmiek" -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.2' | xcpretty && exit ${PIPESTATUS[0]}
+      run: xcodebuild test -workspace "Gimmiek.xcworkspace" -scheme "Gimmiek" -destination "platform=iOS Simulator,name=iPhone 12 Pro,OS=latest" | xcpretty && exit ${PIPESTATUS[0]}
