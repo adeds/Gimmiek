@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "Core",
+        "repositoryURL": "https://github.com/adeds/GimmiekCore.git",
+        "state": {
+          "branch": "main",
+          "revision": "cf68d46be15236ec9ec8836efec72a992b8829ff",
+          "version": null
+        }
+      },
+      {
         "package": "SDWebImage",
         "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
         "state": {
