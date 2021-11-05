@@ -7,6 +7,7 @@
 
 import Foundation
 import Cleanse
+import Core
 
 protocol RouterProtocol {
     func toAccountDetail() -> AccountDetailView

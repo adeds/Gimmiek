@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Cleanse
+import Core
 
 class GameFavoritesViewModel: ObservableObject {
     

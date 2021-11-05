@@ -6,6 +6,7 @@
 //
 
 import Cleanse
+import Core
 
 struct AppComponent: Cleanse.RootComponent {
     typealias Root = PropertyInjector<GimmiekApp>
