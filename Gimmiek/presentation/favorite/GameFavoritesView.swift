@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Core
 
 struct GameFavoritesView: View {
     let router: RouterProtocol

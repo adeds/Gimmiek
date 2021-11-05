@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Cleanse
+import Core
 
 @main
 class GimmiekApp: App {

@@ -8,6 +8,7 @@
 import Foundation
 import Cleanse
 import Combine
+import Core
 
 class GameDetailViewModel: ObservableObject {
     
