@@ -1,0 +1,20 @@
+name: Test
+on:
+  push:
+    branches: [ main, expert-two ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: List available Xcode versions
+      run: ls /Applications | grep Xcode
+    - name: Build
+      run: |
+       xcodebuild clean build -workspace "Gimmiek.xcworkspace" -scheme "Gimmiek" -destination "platform=iOS Simulator,name=iPhone 12 Pro,OS=latest" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO    
+    - name: Run unit tests
+      run: xcodebuild test -workspace "Gimmiek.xcworkspace" -scheme "Gimmiek" -destination "platform=iOS Simulator,name=iPhone 12 Pro,OS=latest" | xcpretty && exit ${PIPESTATUS[0]}
